@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Servicios digitales × Fundación En Cuentos te Encuentro A.C.</title>
+  <title>En cuentos te encuentro · Panel de administración</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -73,9 +73,10 @@
       gap: 14px;
     }
 
-    .logo-svg {
-      width: 60px;
-      height: 60px;
+    .logo-img {
+      height: 56px;
+      width: auto;
+      object-fit: contain;
       flex-shrink: 0;
     }
 
@@ -876,25 +877,8 @@
     <!-- TOP BAR -->
     <header class="topbar">
       <div class="brand-lockup">
-        <!-- Logotipo SVG fiel al camaleón de Fundación En Cuentos te Encuentro A.C. -->
-        <svg class="logo-svg" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Fundación En Cuentos te Encuentro A.C.">
-          <!-- Cresta dorsal -->
-          <path d="M40 21L44 14L49 20M51 19L55 12L60 19M31 27L33 19L39 24M24 36L25 28L31 32" stroke="#6C5D53" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Cuerpo y espiral de cola en café cálido -->
-          <path d="M58 14C78 14 93 26 93 41C93 53 83 62 69 63C74 73 76 85 71 98C65 113 48 121 33 115C18 109 12 93 18 78C23 66 35 61 46 63C52 64 56 70 54 76C52 82 46 84 40 82C36 80 34 75 36 71" stroke="#6C5D53" stroke-width="10.5" stroke-linecap="round"/>
-          <!-- Patitas -->
-          <path d="M84 56L96 56M81 69L93 69" stroke="#6C5D53" stroke-width="6.5" stroke-linecap="round"/>
-          <!-- Segmentos multicolor estilo vitral/mosaico -->
-          <path d="M29 58C29 36 45 21 63 21L68 40L43 54Z" fill="#00A8B5"/>
-          <path d="M25 71C24 63 26 55 31 49L49 58L37 76Z" fill="#68B82E"/>
-          <path d="M45 38L65 27L74 44L54 54Z" fill="#FFB800"/>
-          <path d="M26 81L41 73L50 90L32 95Z" fill="#C8378A"/>
-          <path d="M43 93L59 86L64 102L47 107Z" fill="#00A8B5"/>
-          <path d="M31 103L45 100L47 112L33 112Z" fill="#FFB800"/>
-          <!-- Ojo -->
-          <circle cx="77" cy="33" r="6.5" fill="#FFFFFF"/>
-          <circle cx="77" cy="33" r="3" fill="#6C5D53"/>
-        </svg>
+        <!-- Logotipo adjunto por el usuario -->
+        <img src="logo en cuentos_2.jpeg" alt="Fundación En Cuentos te Encuentro A.C." class="logo-img" />
         <div class="brand-titles">
           <span class="agency-tag">Servicios digitales · Lucy</span>
           <span class="foundation-name">Fundación En Cuentos te Encuentro A.C.</span>
@@ -924,8 +908,8 @@
         <path d="M-40 120C160 20 340 175 560 95C780 15 960 165 1180 85C1310 38 1400 70 1490 50" stroke="#FFB800" stroke-width="46" stroke-linecap="round"/>
       </svg>
       <div class="hero-content">
-        <span class="hero-kicker">Control Interno &amp; Flujo de Trabajo Compartido</span>
-        <h1 class="hero-title">Contenidos<br />en Orden</h1>
+        <span class="hero-kicker">Panel de administración</span>
+        <h1 class="hero-title">En cuentos<br />te encuentro</h1>
         <p class="hero-subtitle">
           Tablero operativo entre <strong>Servicios digitales (Lucy)</strong> y <strong>Adela, Margie y Kaori</strong> para visualizar acuerdos, insumos multimedia, fechas de corte y publicaciones mensuales.
         </p>
@@ -934,11 +918,11 @@
 
     <!-- BENTO GRID: ACUERDOS, JUNTAS Y PAGOS -->
     <section id="acuerdos" class="bento-top-grid">
-      <!-- Tarjeta 1: Alcance del paquete -->
+      <!-- Tarjeta 1: Acuerdos -->
       <article class="bento-card card-stone">
         <div>
           <span class="pill-tag pill-dark">Acuerdo Base Mensual</span>
-          <h2 class="serif-heading">Claridad para producir sin fricciones</h2>
+          <h2 class="serif-heading">Acuerdos</h2>
           <p style="font-size: 14px; color: var(--text-muted);">
             Mantener visibles nuestros compromisos nos permite avanzar puntual y ordenadamente cada ciclo de 30 días.
           </p>
@@ -1005,7 +989,7 @@
           <span class="pill-tag pill-light">Paso 02 · Agencia</span>
           <h2 class="serif-heading">Desarrollo creativo a cargo de Lucy</h2>
           <p style="font-size: 14px; opacity: 0.95;">
-            Con esos datos, Servicios digitales estructura el mensaje, redacta textos, edita materiales y define la salida visual más efectiva.
+            Con esos datos, Servicios digitales estructura el mensaje, redacta textos y edita materiales.
           </p>
         </div>
         <div style="margin-top: 16px; font-size: 12px; font-weight: 700; opacity: 0.9;">
@@ -1013,14 +997,14 @@
         </div>
       </article>
 
-      <!-- Tarjeta 5: Zona de Pagos (Día 18 por adelantado) -->
+      <!-- Tarjeta 5: Zona de Pagos con control independiente por mes -->
       <article id="pagos" class="bento-card card-yellow">
         <div class="payment-header">
           <div>
             <span class="pill-tag pill-dark">Administración · Corte día 18</span>
             <h2 class="serif-heading">Estado de Pago Mensual</h2>
             <p style="font-size: 13.5px; max-width: 440px;">
-              Los pagos se realizan <strong>por adelantado cada día 18 del mes</strong> ($5,000 MXN base + peticiones especiales aprobadas).
+              Los pagos se realizan <strong>por adelantado cada día 18 del mes</strong> ($5,000 MXN base + peticiones especiales aprobadas). Cada mes se administra de forma independiente.
             </p>
           </div>
 
@@ -1031,7 +1015,7 @@
         </div>
 
         <div id="paymentAlertBanner" class="payment-alert-banner pending-alert">
-          <span id="paymentAlertText">⚠️ RECORDATORIO: El mes en curso aún no registra pago (fecha límite: día 18).</span>
+          <span id="paymentAlertText">⚠️ RECORDATORIO: El mes seleccionado aún no registra pago (fecha límite: día 18).</span>
         </div>
 
         <div class="payment-controls">
@@ -1150,7 +1134,7 @@
 
   <script>
     const BASE_PACKAGE_PRICE = 5000;
-    const STORAGE_KEY = 'enCuentos_serviciosDigitales_v2';
+    const STORAGE_KEY = 'enCuentos_serviciosDigitales_v3';
 
     const firebaseConfig = {
       apiKey: "AIzaSyA7Bzw44UvKRW1wG8NpfCorbGLYj3M1aYI",
@@ -1173,8 +1157,21 @@
     }));
 
     const defaultState = {
-      billingMonth: 'Noviembre 2026',
-      isPaid: false,
+      currentMonth: 'Noviembre 2026',
+      paymentsByMonth: {
+        'Noviembre 2026': false,
+        'Diciembre 2026': false,
+        'Enero 2026': false,
+        'Febrero 2026': false,
+        'Marzo 2026': false,
+        'Abril 2026': false,
+        'Mayo 2026': false,
+        'Junio 2026': false,
+        'Julio 2026': false,
+        'Agosto 2026': false,
+        'Septiembre 2026': false,
+        'Octubre 2026': false
+      },
       lastMeetingDate: '2026-11-12',
       lastMeetingNotes: 'Alineación de objetivos mensuales y revisión de carpetas.',
       nextMeetingDate: '2026-11-26',
@@ -1204,6 +1201,10 @@
         return {
           ...structuredClone(defaultState),
           ...parsed,
+          paymentsByMonth: {
+            ...defaultState.paymentsByMonth,
+            ...(parsed.paymentsByMonth || {})
+          },
           cards: Array.isArray(parsed.cards) && parsed.cards.length === 10
             ? parsed.cards
             : structuredClone(defaultCards),
@@ -1258,6 +1259,10 @@
             appState = {
               ...structuredClone(defaultState),
               ...cloudData,
+              paymentsByMonth: {
+                ...defaultState.paymentsByMonth,
+                ...(cloudData.paymentsByMonth || {})
+              },
               cards: Array.isArray(cloudData.cards) && cloudData.cards.length === 10
                 ? cloudData.cards
                 : structuredClone(defaultCards),
@@ -1302,7 +1307,9 @@
       document.getElementById('nextMeetingNotes').value = appState.nextMeetingNotes || '';
 
       const monthSelect = document.getElementById('billingMonth');
-      monthSelect.value = appState.billingMonth;
+      monthSelect.value = appState.currentMonth;
+
+      const isCurrentPaid = !!appState.paymentsByMonth[appState.currentMonth];
 
       const toggleBtn = document.getElementById('paymentToggleBtn');
       const toggleIcon = document.getElementById('paymentToggleIcon');
@@ -1310,18 +1317,18 @@
       const banner = document.getElementById('paymentAlertBanner');
       const bannerText = document.getElementById('paymentAlertText');
 
-      if (appState.isPaid) {
+      if (isCurrentPaid) {
         toggleBtn.className = 'payment-toggle-btn is-paid';
         toggleIcon.textContent = '✅';
         toggleLabel.textContent = 'Mes Pagado';
         banner.className = 'payment-alert-banner paid-alert';
-        bannerText.textContent = `✅ PAGO CUBIERTO: El ciclo de ${appState.billingMonth} está pagado por adelantado.`;
+        bannerText.textContent = `✅ PAGO CUBIERTO: El ciclo de ${appState.currentMonth} está pagado por adelantado.`;
       } else {
         toggleBtn.className = 'payment-toggle-btn is-pending';
         toggleIcon.textContent = '⏳';
         toggleLabel.textContent = 'Pendiente · Marcar Pagado';
         banner.className = 'payment-alert-banner pending-alert';
-        bannerText.textContent = `⚠️ RECORDATORIO VISUAL: El mes que está corriendo (${appState.billingMonth}) aún no se ha pagado. Corte: día 18.`;
+        bannerText.textContent = `⚠️ RECORDATORIO VISUAL: El mes seleccionado (${appState.currentMonth}) aún no registra pago. Corte: día 18.`;
       }
 
       const extras = getExtrasTotal();
@@ -1502,13 +1509,17 @@
     });
 
     document.getElementById('billingMonth').addEventListener('change', (e) => {
-      appState.billingMonth = e.target.value;
+      appState.currentMonth = e.target.value;
       saveState();
       renderMeetingsAndPayments();
     });
 
     document.getElementById('paymentToggleBtn').addEventListener('click', () => {
-      appState.isPaid = !appState.isPaid;
+      const current = appState.currentMonth;
+      if (!appState.paymentsByMonth) {
+        appState.paymentsByMonth = {};
+      }
+      appState.paymentsByMonth[current] = !appState.paymentsByMonth[current];
       saveState();
       renderMeetingsAndPayments();
     });
