@@ -295,7 +295,7 @@
             <span class="px-2.5 py-1 rounded-full bg-white/15 text-mustard text-xs font-bold">Lucy</span>
           </div>
           <p class="text-sm text-stone-300 mt-3">
-            Con sus insumos, <strong>Servicios digitales</strong> redacta, diseña, edita y define el formato óptimo (Post, Carrusel o Reel) para cada tarjeta.
+            Con sus datos, <strong>Servicios digitales</strong> redacta, diseña, edita y define el formato óptimo.
           </p>
           <div class="mt-4 flex flex-wrap gap-1.5">
             <span class="text-[11px] bg-turquoise text-white px-2.5 py-0.5 rounded-full font-semibold">Post</span>
@@ -455,17 +455,15 @@
           <!-- Formulario rápido integrado para añadir petición sin salir de la página -->
           <form id="special-request-form" onsubmit="addSpecialRequest(event)" class="bg-canvas p-4 rounded-3xl border border-black/5 mb-5">
             <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
-              <div class="sm:col-span-4">
+              <div class="sm:col-span-5">
                 <label class="block text-[11px] font-bold uppercase text-stone-500 mb-1">Tipo de requerimiento</label>
-                <select id="req-type" required class="w-full text-xs font-semibold bg-white border border-stone-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-coral">
-                  <option value="Reel Extra">🎬 Reel Extra</option>
-                  <option value="Presentación PPT">📊 Presentación PPT</option>
-                  <option value="Presentación en Video">🎥 Presentación en Video</option>
-                  <option value="Diseño / Flyer Extra">🎨 Diseño / Flyer Extra</option>
-                  <option value="Otro Especial">✨ Otro Especial</option>
+                <select id="req-type" onchange="syncSpecialRequestCost()" required class="w-full text-xs font-semibold bg-white border border-stone-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-coral">
+                  <option value="Reel extra">🎬 Reel extra ($500 MXN)</option>
+                  <option value="Presentación PPT (máx. 15 slides)">📊 Presentación PPT (máx. 15 slides) ($950 MXN)</option>
+                  <option value="Presentación en video (hasta 2 minutos)">🎥 Presentación en video (hasta 2 minutos) ($950 MXN)</option>
                 </select>
               </div>
-              <div class="sm:col-span-4">
+              <div class="sm:col-span-3">
                 <label class="block text-[11px] font-bold uppercase text-stone-500 mb-1">Solicita (Fundación)</label>
                 <select id="req-requester" class="w-full text-xs font-semibold bg-white border border-stone-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-coral">
                   <option value="Adela">Adela</option>
@@ -475,9 +473,9 @@
                 </select>
               </div>
               <div class="sm:col-span-4">
-                <label class="block text-[11px] font-bold uppercase text-stone-500 mb-1">Inversión / Acuerdo</label>
-                <input type="text" id="req-cost" placeholder="Ej. $600 MXN / Por cotizar"
-                  class="w-full text-xs bg-white border border-stone-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-coral">
+                <label class="block text-[11px] font-bold uppercase text-stone-500 mb-1">Tarifa acordada</label>
+                <input type="text" id="req-cost" value="$500 MXN" readonly
+                  class="w-full text-xs font-bold text-coral bg-white/80 border border-stone-200 rounded-xl px-3 py-2.5 focus:outline-none cursor-default">
               </div>
               <div class="sm:col-span-9">
                 <input type="text" id="req-desc" required placeholder="Describe brevemente qué necesitan (ej. Video resumen evento anual de lectura)..."
@@ -675,7 +673,7 @@
           id: 3,
           title: '¿Cómo donar libros en buen estado?',
           topic: 'Guía rápida con requisitos para donar cuentos infantiles y puntos de recolección activos.',
-          hasMedia: 'Usar banco',
+          hasMedia: 'Sí tiene',
           mediaLocation: 'Carpeta Drive > Identidad Visual y Recursos',
           format: 'Post',
           proposedBy: 'Kaori',
@@ -719,7 +717,7 @@
           id: 7,
           title: 'Frase inspiradora sobre la imaginación',
           topic: 'Cita célebre de literatura infantil vinculada a la misión de la Fundación.',
-          hasMedia: 'Usar banco',
+          hasMedia: 'Pendiente subir',
           mediaLocation: 'Diseño gráfico por Servicios digitales',
           format: 'Post',
           proposedBy: 'Lucy',
@@ -763,17 +761,17 @@
       specialRequests: [
         {
           id: 'req-101',
-          type: 'Presentación PPT',
+          type: 'Presentación PPT (máx. 15 slides)',
           requester: 'Adela',
-          cost: '$850 MXN',
-          description: 'Presentación institucional de 12 diapositivas para reunión con posibles donantes.',
+          cost: '$950 MXN',
+          description: 'Presentación institucional de hasta 15 diapositivas para reunión con posibles donantes.',
           status: 'En proceso'
         },
         {
           id: 'req-102',
-          type: 'Reel Extra',
+          type: 'Reel extra',
           requester: 'Kaori',
-          cost: '$600 MXN',
+          cost: '$500 MXN',
           description: 'Video resumen especial del festival de lectura del fin de semana.',
           status: 'Solicitado'
         }
@@ -1030,8 +1028,7 @@
                 <select onchange="updateContentField(${item.id}, 'hasMedia', this.value)"
                   class="text-[11px] font-bold rounded-lg px-2 py-1 bg-white border border-stone-200 text-ink focus:outline-none">
                   <option value="Sí tiene" ${item.hasMedia === 'Sí tiene' ? 'selected' : ''}>✅ Sí tiene material</option>
-                  <option value="Pendiente subir" ${item.hasMedia === 'Pendiente subir' ? 'selected' : ''}>⏳ Pendiente subir</option>
-                  <option value="Usar banco" ${item.hasMedia === 'Usar banco' ? 'selected' : ''}>🎨 Usar banco / diseño</option>
+                  <option value="Pendiente subir" ${item.hasMedia !== 'Sí tiene' ? 'selected' : ''}>⏳ Pendiente subir</option>
                 </select>
               </div>
 
@@ -1238,25 +1235,25 @@
                 <option value="Solicitado" ${req.status === 'Solicitado' ? 'selected' : ''}>Solicitado</option>
                 <option value="En proceso" ${req.status === 'En proceso' ? 'selected' : ''}>En proceso</option>
                 <option value="Entregado" ${req.status === 'Entregado' ? 'selected' : ''}>Entregado ✓</option>
-              </select>
+    const SPECIAL_REQUEST_PRICES = {
+      'Reel extra': '$500 MXN',
+      'Presentación PPT (máx. 15 slides)': '$950 MXN',
+      'Presentación en video (hasta 2 minutos)': '$950 MXN'
+    };
 
-              <button type="button" onclick="deleteSpecialRequest('${req.id}')" title="Eliminar petición"
-                class="p-1.5 rounded-xl text-stone-400 hover:text-coral hover:bg-white transition-colors">
-                <i data-lucide="trash-2" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      lucide.createIcons();
+    function syncSpecialRequestCost() {
+      const typeSelect = document.getElementById('req-type');
+      const costInput = document.getElementById('req-cost');
+      if (typeSelect && costInput) {
+        costInput.value = SPECIAL_REQUEST_PRICES[typeSelect.value] || '$500 MXN';
+      }
     }
 
     function addSpecialRequest(event) {
       event.preventDefault();
       const type = document.getElementById('req-type').value;
       const requester = document.getElementById('req-requester').value;
-      const cost = document.getElementById('req-cost').value.trim();
+      const cost = SPECIAL_REQUEST_PRICES[type] || document.getElementById('req-cost').value.trim();
       const description = document.getElementById('req-desc').value.trim();
 
       if (!description) return;
@@ -1265,13 +1262,13 @@
         id: 'req-' + Date.now(),
         type,
         requester,
-        cost: cost || 'Por cotizar',
+        cost,
         description,
         status: 'Solicitado'
       });
 
       document.getElementById('req-desc').value = '';
-      document.getElementById('req-cost').value = '';
+      syncSpecialRequestCost();
 
       saveData();
       renderSpecialRequests();
