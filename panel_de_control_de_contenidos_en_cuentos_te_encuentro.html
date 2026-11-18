@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>En Cuentos te Encuentro × Servicios Digitales | Panel de Acuerdos y Contenidos</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans (Display), Fraunces (Editorial Serif) & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#F6F6F4',
+            ink: '#141414',
+            mustard: '#FDB813',
+            turquoise: '#00A8B5',
+            sage: '#7E8C69',
+            chameleonGreen: '#7AC143',
+            coral: '#F05A28',
+            magenta: '#D9388A',
+            earth: '#5A4D41',
+          },
+          fontFamily: {
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Fraunces"', 'serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          },
+          borderRadius: {
+            'bento': '28px',
+            'bento-lg': '34px',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F6F6F4;
+      color: #141414;
+      font-family: 'Inter', sans-serif;
+    }
+    .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-serif-editorial { font-family: 'Fraunces', serif; }
+
+    /* Animación suave para alertas de pago pendiente */
+    @keyframes pulseBorder {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(240, 90, 40, 0.35); }
+      50% { box-shadow: 0 0 0 10px rgba(240, 90, 40, 0); }
+    }
+    .payment-alert-pulse {
+      animation: pulseBorder 2.2s infinite;
+    }
+
+    /* Transiciones de tarjetas Bento */
+    .bento-card {
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+    }
+    .bento-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Scrollbar limpio */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #F6F6F4; }
+    ::-webkit-scrollbar-thumb { background: #D1D1CD; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #A3A39E; }
+  </style>
+</head>
+<body class="antialiased selection:bg-mustard selection:text-ink pb-16">
+
+  <!-- Toast / Notificación flotante sin usar alert() -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Contenedor Principal Estilo Marco Editorial -->
+  <div class="max-w-[1380px] mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6">
+
+    <!-- 1. BARRA DE NAVEGACIÓN SUPERIOR -->
+    <header class="bg-white rounded-bento px-5 py-4 shadow-sm border border-black/5 mb-5">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        
+        <!-- Identidad Visual Dual: Logo Camaleón Fundación + Servicios Digitales -->
+        <div class="flex flex-wrap items-center gap-4">
+          <!-- SVG Vectorial Fiel del Camaleón de Fundación En Cuentos te Encuentro A.C. -->
+          <div class="flex items-center gap-3 pr-4 border-r border-stone-200">
+            <svg width="52" height="54" viewBox="0 0 120 125" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Fundación En Cuentos te Encuentro">
+              <!-- Espinas dorsales -->
+              <polygon points="33,26 37,19 42,24" fill="#635649"/>
+              <polygon points="26,33 29,26 34,30" fill="#635649"/>
+              <polygon points="20,42 22,35 28,38" fill="#635649"/>
+              <polygon points="16,52 17,45 23,47" fill="#635649"/>
+              <!-- Cuerpo base café tierra -->
+              <path d="M52 12 C75 11, 98 20, 99 36 C100 50, 86 60, 74 64 L85 68 C89 69, 89 75, 84 75 L70 73 L69 80 L81 84 C85 85, 84 91, 79 90 L65 86 C58 84, 52 79, 50 72 C44 76, 42 86, 48 93 C53 98, 61 95, 61 89 C61 85, 57 83, 54 85 C52 86, 52 89, 54 90 C56 91, 58 89, 57 87" stroke="#635649" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="#635649"/>
+              <!-- Caparazón / Cuerpo curvo mosaic -->
+              <path d="M52 12 C76 11, 99 20, 99 36 C99 49, 85 59, 71 63 C55 68, 43 79, 46 93 C49 104, 64 105, 68 95 C72 85, 62 77, 54 81 C48 84, 48 92, 54 94 C58 95, 61 91, 59 88" fill="none" stroke="#635649" stroke-width="8" stroke-linecap="round"/>
+              <!-- Piezas de color estilo vitral/camaleón -->
+              <!-- Verde superior -->
+              <path d="M47 28 C53 26, 60 26, 65 28 L72 45 C65 47, 58 47, 53 45 Z" fill="#7AC143"/>
+              <!-- Turquesa grande central -->
+              <path d="M31 44 C36 37, 42 32, 46 30 L52 47 C46 51, 42 56, 39 62 L26 57 C27 52, 29 48, 31 44 Z" fill="#00A8B5"/>
+              <!-- Turquesa derecho -->
+              <path d="M54 48 C60 49, 66 48, 72 46 L76 58 C69 62, 62 64, 56 64 Z" fill="#00A8B5"/>
+              <!-- Verde lateral izquierdo -->
+              <path d="M25 59 L38 64 C36 70, 35 76, 36 82 L23 81 C22 73, 23 66, 25 59 Z" fill="#7AC143"/>
+              <!-- Naranja mostaza medio -->
+              <path d="M39 66 C45 65, 51 65, 56 66 L54 78 C49 78, 43 79, 38 82 Z" fill="#F7941D"/>
+              <!-- Rosa / Magenta inferior -->
+              <path d="M23 83 L36 84 C37 91, 40 97, 45 102 L34 109 C27 101, 24 92, 23 83 Z" fill="#D9388A"/>
+              <!-- Verde bajo naranja -->
+              <path d="M39 84 C44 81, 49 80, 53 80 L49 94 C44 95, 41 92, 39 84 Z" fill="#7AC143"/>
+              <!-- Naranja base cola -->
+              <path d="M36 110 L46 103 C51 107, 57 108, 63 107 L65 116 C54 118, 44 116, 36 110 Z" fill="#F7941D"/>
+              <!-- Espiral de la cola -->
+              <path d="M64 112 C76 110, 81 98, 76 88 C71 79, 59 78, 53 85 C48 91, 51 99, 58 100 C63 101, 67 96, 65 92 C63 89, 59 89, 58 92" stroke="#635649" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+              <!-- Puntos de colores en la cola -->
+              <circle cx="71" cy="109" r="3.2" fill="#D9388A"/>
+              <circle cx="77" cy="102" r="2.8" fill="#F7941D"/>
+              <circle cx="79" cy="93" r="2.5" fill="#00A8B5"/>
+              <circle cx="75" cy="85" r="2.3" fill="#7AC143"/>
+              <!-- Ojo del camaleón -->
+              <circle cx="78" cy="31" r="6.5" fill="#FFFFFF"/>
+              <circle cx="78" cy="31" r="3.2" fill="#635649"/>
+            </svg>
+            <div>
+              <span class="block text-[11px] font-bold tracking-wider uppercase text-turquoise leading-none">Fundación</span>
+              <span class="font-display font-extrabold text-sm sm:text-base text-earth tracking-tight leading-tight block">EN CUENTOS TE ENCUENTRO A.C.</span>
+            </div>
+          </div>
+
+          <!-- Agencia Proveedora -->
+          <div class="flex items-center gap-2.5 bg-canvas px-3.5 py-2 rounded-2xl border border-black/5">
+            <span class="w-2.5 h-2.5 rounded-full bg-mustard inline-block"></span>
+            <div class="text-xs">
+              <span class="text-stone-500 block leading-none">Agencia Aliada</span>
+              <span class="font-display font-bold text-ink">Servicios digitales <span class="font-normal text-stone-500">· Lucy</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación Numerada Estilo Editorial (Inspirada en referencia) -->
+        <nav class="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] font-display font-bold tracking-wider uppercase">
+          <a href="#acuerdos" class="hover:text-turquoise transition-colors flex items-start gap-0.5">
+            <span>ACUERDOS</span><sup class="text-[9px] text-stone-400">01</sup>
+          </a>
+          <a href="#pagos" class="hover:text-coral transition-colors flex items-start gap-0.5">
+            <span>PAGOS DÍA 18</span><sup class="text-[9px] text-stone-400">02</sup>
+          </a>
+          <a href="#contenidos" class="hover:text-turquoise transition-colors flex items-start gap-0.5">
+            <span>10 TARJETAS</span><sup class="text-[9px] text-stone-400">03</sup>
+          </a>
+          <a href="#checklist" class="hover:text-sage transition-colors flex items-start gap-0.5">
+            <span>CHECKLIST</span><sup class="text-[9px] text-stone-400">04</sup>
+          </a>
+          <a href="#extras-juntas" class="hover:text-magenta transition-colors flex items-start gap-0.5">
+            <span>EXTRAS Y JUNTAS</span><sup class="text-[9px] text-stone-400">05</sup>
+          </a>
+        </nav>
+
+      </div>
+    </header>
+
+    <!-- 2. HERO BENTO + ACUERDOS BASE (Inspirado directamente en la composición visual adjunta) -->
+    <section id="acuerdos" class="mb-6">
+      <!-- Bloque Principal Blanco con Tipografía Gigante y Cinta Mostaza Orgánica -->
+      <div class="bg-white rounded-bento-lg p-6 sm:p-10 shadow-sm border border-black/5 relative overflow-hidden mb-5">
+        <!-- Cinta gráfica curva amarilla inspirada en la referencia -->
+        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-90" viewBox="0 0 1200 340" fill="none" preserveAspectRatio="none">
+          <path d="M-40 110 C 120 20, 260 250, 460 150 C 660 50, 770 290, 990 190 C 1110 135, 1180 150, 1250 130" stroke="#FDB813" stroke-width="38" stroke-linecap="round"/>
+        </svg>
+
+        <div class="relative z-10">
+          <!-- Badges superiores de equipo -->
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+            <div class="inline-flex items-center gap-2 bg-ink text-white text-xs font-medium px-4 py-1.5 rounded-full">
+              <span class="text-mustard font-bold">✦</span>
+              <span>Tablero Interno de Colaboración & Claridad Operativa</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-medium bg-white/90 backdrop-blur border border-stone-200 px-3 py-1 rounded-full text-earth">
+                Equipo Fundación: <strong>Adela, Margie y Kaori</strong>
+              </span>
+              <span class="text-xs font-medium bg-turquoise text-white px-3 py-1 rounded-full">
+                Dirección Digital: <strong>Lucy</strong>
+              </span>
+            </div>
+          </div>
+
+          <!-- Título Display Ultra-Bold -->
+          <h1 class="font-display font-extrabold text-4xl sm:text-6xl lg:text-[74px] tracking-tight text-ink leading-[0.95] uppercase mb-5">
+            EN CUENTOS <br class="hidden sm:inline">TE ENCUENTRO
+          </h1>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
+            <div class="lg:col-span-7 bg-white/95 backdrop-blur-sm p-5 rounded-3xl border border-stone-100">
+              <p class="font-serif-editorial text-xl sm:text-2xl text-ink leading-snug mb-2">
+                Orden visible para multiplicar el impacto de cada historia.
+              </p>
+              <p class="text-sm text-stone-600 leading-relaxed">
+                Este espacio concentra nuestros acuerdos mensuales entre <strong>Servicios digitales (Lucy)</strong> y la <strong>Fundación En Cuentos te Encuentro A.C.</strong> Tener claros los 10 temas, los repositorios de fotos/videos y las fechas clave nos permite trabajar con agilidad y cero fricciones.
+              </p>
+            </div>
+
+            <!-- Stickers inclinados estilo referencia ("Features / Properties") -->
+            <div class="lg:col-span-5 flex flex-wrap lg:justify-end items-center gap-2">
+              <span class="inline-block bg-mustard text-ink font-display font-bold text-sm px-4 py-2 rounded-2xl -rotate-2 shadow-sm">
+                10 Contenidos / Mes
+              </span>
+              <span class="inline-block bg-coral text-white font-display font-bold text-sm px-4 py-2 rounded-2xl rotate-2 shadow-sm">
+                Ciclo de 30 días
+              </span>
+              <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-ink text-white text-lg font-bold">
+                ✳
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid Bento de 4 Tarjetas de Acuerdos Clave -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Tarjeta 1: Entregables (Estilo Card Gris Perla de referencia) -->
+        <div class="bento-card bg-white rounded-bento p-6 border border-black/5 flex flex-col justify-between min-h-[210px]">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-stone-400">Paquete Mensual</span>
+              <h2 class="font-serif-editorial text-3xl text-ink mt-1">10 Contenidos</h2>
+            </div>
+            <span class="w-10 h-10 rounded-full bg-canvas flex items-center justify-center text-ink">
+              <i data-lucide="layers" class="w-5 h-5"></i>
+            </span>
+          </div>
+          <p class="text-sm text-stone-600 mt-3">
+            Desarrollados estratégicamente en formato <strong>Post, Carrusel o Reel</strong> según lo que mejor comunique cada tema.
+          </p>
+          <div class="mt-4 flex items-center justify-between pt-3 border-t border-stone-100">
+            <span class="text-xs font-semibold text-turquoise">Periodo de 30 días</span>
+            <i data-lucide="arrow-up-right" class="w-6 h-6 text-ink stroke-[2.5]"></i>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Inversión y Regla de Pago (Estilo Card Verde Oliva/Salvia de referencia) -->
+        <div class="bento-card bg-sage text-white rounded-bento p-6 flex flex-col justify-between min-h-[210px] relative overflow-hidden">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-white/75">Inversión Mensual</span>
+              <h2 class="font-serif-editorial text-3xl sm:text-4xl mt-1">$5,000 <span class="text-base font-sans font-normal">MXN</span></h2>
+            </div>
+            <span class="text-2xl leading-none">✳</span>
+          </div>
+          <p class="text-sm text-white/90 mt-3">
+            Pago mensual por adelantado. Fecha límite establecida: <strong>cada día 18 del mes</strong> para asegurar continuidad de producción.
+          </p>
+          <div class="mt-4 flex items-center justify-between pt-3 border-t border-white/15">
+            <span class="text-xs font-semibold uppercase tracking-wider">Corte: Día 18</span>
+            <a href="#pagos" class="w-8 h-8 rounded-full bg-ink text-white flex items-center justify-center hover:scale-105 transition-transform" title="Ir a sección de pagos">
+              <i data-lucide="arrow-up-left" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: Rol de la Fundación (Adela, Margie y Kaori) -->
+        <div class="bento-card bg-white rounded-bento p-6 border border-black/5 flex flex-col justify-between min-h-[210px]">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-magenta">Paso 01 · Fundación</span>
+              <h2 class="font-serif-editorial text-2xl text-ink mt-1">Insumos y Temas</h2>
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-magenta/10 text-magenta text-xs font-bold">Adela · Margie · Kaori</span>
+          </div>
+          <p class="text-sm text-stone-600 mt-3">
+            Llenan las <strong>10 tarjetas</strong> con título, idea general y nos indican si hay fotos/videos y en qué enlace o carpeta están alojados.
+          </p>
+          <div class="mt-4 flex items-center gap-2 text-xs font-semibold text-earth">
+            <i data-lucide="folder-check" class="w-4 h-4 text-magenta"></i>
+            <span>10 tarjetas = Mes organizado</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta 4: Rol de Servicios Digitales (Lucy) -->
+        <div class="bento-card bg-ink text-white rounded-bento p-6 flex flex-col justify-between min-h-[210px]">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-mustard">Paso 02 · Agencia</span>
+              <h2 class="font-serif-editorial text-2xl mt-1">Desarrollo y Formato</h2>
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-white/15 text-mustard text-xs font-bold">Lucy</span>
+          </div>
+          <p class="text-sm text-stone-300 mt-3">
+            Con sus insumos, <strong>Servicios digitales</strong> redacta, diseña, edita y define el formato óptimo (Post, Carrusel o Reel) para cada tarjeta.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            <span class="text-[11px] bg-turquoise text-white px-2.5 py-0.5 rounded-full font-semibold">Post</span>
+            <span class="text-[11px] bg-mustard text-ink px-2.5 py-0.5 rounded-full font-semibold">Carrusel</span>
+            <span class="text-[11px] bg-coral text-white px-2.5 py-0.5 rounded-full font-semibold">Reel</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. ZONA DE PAGOS (Control Mensual - Día 18 con Alerta Dinámica) -->
+    <section id="pagos" class="mb-8">
+      <div id="payment-card" class="rounded-bento-lg p-6 sm:p-8 transition-all duration-300 border-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          
+          <!-- Info de Ciclo y Recordatorio Visual -->
+          <div class="lg:col-span-7">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="inline-flex items-center gap-1.5 text-xs font-display font-extrabold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-ink text-white">
+                <i data-lucide="calendar-clock" class="w-3.5 h-3.5 text-mustard"></i>
+                Control de Pagos por Adelantado
+              </span>
+              <div class="flex items-center gap-2 bg-white/80 px-3 py-1 rounded-full border border-black/10">
+                <label for="billing-month" class="text-xs font-semibold text-stone-600">Ciclo activo:</label>
+                <input type="text" id="billing-month" value="Noviembre 2026" onchange="updateBillingMonth(this.value)"
+                  class="text-xs font-bold text-ink bg-transparent border-b border-dashed border-stone-400 focus:outline-none focus:border-ink w-32">
+              </div>
+            </div>
+
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-ink tracking-tight mb-2">
+              Mensualidad: $5,000.00 MXN <span class="font-serif-editorial font-normal text-xl sm:text-2xl text-stone-700">· Fecha de pago: Día 18</span>
+            </h2>
+
+            <!-- Alerta Visual Dinámica (se actualiza vía JS según pagado/pendiente) -->
+            <div id="payment-status-banner" class="mt-3 p-4 rounded-2xl flex items-start gap-3">
+              <!-- Contenido dinámico -->
+            </div>
+          </div>
+
+          <!-- Panel Interactivo de Cambio de Estado e Historial -->
+          <div class="lg:col-span-5 bg-white rounded-3xl p-5 border border-black/5 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-stone-400">Estatus del Mes Corriente</span>
+              <span id="payment-date-stamp" class="text-xs text-stone-500"></span>
+            </div>
+
+            <!-- Botones Toggle Pagado / Pendiente -->
+            <div class="grid grid-cols-2 gap-2.5 p-1.5 bg-canvas rounded-2xl mb-4">
+              <button type="button" id="btn-set-pending" onclick="setPaymentStatus(false)"
+                class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-display font-bold flex items-center justify-center gap-2 transition-all">
+                <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                <span>Pendiente</span>
+              </button>
+              <button type="button" id="btn-set-paid" onclick="setPaymentStatus(true)"
+                class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-display font-bold flex items-center justify-center gap-2 transition-all">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                <span>Mes Pagado</span>
+              </button>
+            </div>
+
+            <!-- Nota rápida de comprobante o referencia -->
+            <div class="flex items-center gap-2">
+              <input type="text" id="payment-reference" placeholder="Ej. Transferencia recibida / Folio..."
+                onchange="updatePaymentReference(this.value)"
+                class="w-full text-xs bg-canvas border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:border-turquoise">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TABLERO DE LAS 10 TARJETAS DE CONTENIDO -->
+    <section id="contenidos" class="mb-10">
+      <!-- Cabecera de sección con progreso -->
+      <div class="bg-white rounded-bento p-6 border border-black/5 mb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="px-2.5 py-0.5 rounded-full bg-mustard text-ink text-xs font-display font-extrabold">CORE DEL FLUJO</span>
+            <span class="text-xs text-stone-500 font-medium">10 espacios para planear el mes</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-ink tracking-tight">
+            Tablero de los 10 Contenidos del Ciclo
+          </h2>
+          <p class="text-sm text-stone-600 mt-1">
+            <strong>Adela, Margie y Kaori:</strong> completen título, tema general y ubicación de fotos/videos. <strong>Lucy:</strong> asigna el formato final.
+          </p>
+        </div>
+
+        <!-- Barra de progreso de tarjetas llenas -->
+        <div class="bg-canvas p-4 rounded-2xl min-w-[250px] border border-black/5">
+          <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+            <span class="text-stone-600">Tarjetas con tema listo</span>
+            <span id="cards-progress-text" class="text-turquoise font-display text-sm">0 / 10</span>
+          </div>
+          <div class="w-full h-2.5 bg-stone-200 rounded-full overflow-hidden">
+            <div id="cards-progress-bar" class="h-full bg-turquoise rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+          <p class="text-[11px] text-stone-500 mt-1.5">Haz clic en cualquier campo para editar y guardar al instante.</p>
+        </div>
+      </div>
+
+      <!-- Grid Bento de las 10 Tarjetas -->
+      <div id="content-cards-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+        <!-- Renderizado dinámicamente por JavaScript (Tarjetas 01 a 10) -->
+      </div>
+    </section>
+
+    <!-- 5. CHECKLIST DE PUBLICACIÓN Y NOTAS DE SEGUIMIENTO -->
+    <section id="checklist" class="mb-10">
+      <div class="bg-white rounded-bento-lg p-6 sm:p-8 border border-black/5 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-stone-100">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sage">Control de Entregas</span>
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-ink mt-0.5">
+              Checklist de Publicación y Notas
+            </h2>
+            <p class="text-sm text-stone-600 mt-1">
+              Marca los contenidos ya publicados y registra el motivo o nota en aquellos que siguen pendientes o reprogramados.
+            </p>
+          </div>
+
+          <!-- Filtros rápidos y contador -->
+          <div class="flex flex-wrap items-center gap-2">
+            <div class="bg-canvas p-1 rounded-2xl inline-flex text-xs font-bold">
+              <button type="button" onclick="setChecklistFilter('all')" id="filter-all" class="px-3.5 py-2 rounded-xl transition-all">Todos (10)</button>
+              <button type="button" onclick="setChecklistFilter('published')" id="filter-published" class="px-3.5 py-2 rounded-xl transition-all">Publicados</button>
+              <button type="button" onclick="setChecklistFilter('pending')" id="filter-pending" class="px-3.5 py-2 rounded-xl transition-all">No publicados</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista interactiva vinculada a las 10 tarjetas -->
+        <div id="checklist-container" class="divide-y divide-stone-100 mt-2">
+          <!-- Renderizado dinámicamente por JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ZONA DE PETICIONES ESPECIALES & JUNTAS (Bento Grid Inferior) -->
+    <section id="extras-juntas" class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
+      
+      <!-- Columna Izquierda (7 cols): Peticiones Especiales fuera del paquete -->
+      <div class="lg:col-span-7 bg-white rounded-bento-lg p-6 sm:p-7 border border-black/5 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full bg-coral/10 text-coral text-xs font-bold uppercase tracking-wider mb-1">
+                Fuera del paquete de 10 contenidos
+              </span>
+              <h2 class="font-display font-extrabold text-2xl text-ink">Peticiones Especiales</h2>
+            </div>
+            <span class="text-xs text-stone-500">Reels extra · Presentaciones PPT · Videos</span>
+          </div>
+
+          <!-- Formulario rápido integrado para añadir petición sin salir de la página -->
+          <form id="special-request-form" onsubmit="addSpecialRequest(event)" class="bg-canvas p-4 rounded-3xl border border-black/5 mb-5">
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+              <div class="sm:col-span-4">
+                <label class="block text-[11px] font-bold uppercase text-stone-500 mb-1">Tipo de requerimiento</label>
+                <select id="req-type" required class="w-full text-xs font-semibold bg-white border border-stone-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-coral">
+                  <option value="Reel Extra">🎬 Reel Extra</option>
+                  <option value="Presentación PPT">📊 Presentación PPT</option>
+                  <option value="Presentación en Video">🎥 Presentación en Video</option>
+                  <option value="Diseño / Flyer Extra">🎨 Diseño / Flyer Extra</option>
+                  <option value="Otro Especial">✨ Otro Especial</option>
+                </select>
+              </div>
+              <div class="sm:col-span-4">
+                <label class="block text-[11px] font-bold uppercase text-stone-500 mb-1">Solicita (Fundación)</label>
+                <select id="req-requester" class="w-full text-xs font-semibold bg-white border border-stone-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-coral">
+                  <option value="Adela">Adela</option>
+                  <option value="Margie">Margie</option>
+                  <option value="Kaori">Kaori</option>
+                  <option value="Equipo Fundación">Equipo Fundación</option>
+                </select>
+              </div>
+              <div class="sm:col-span-4">
+                <label class="block text-[11px] font-bold uppercase text-stone-500 mb-1">Inversión / Acuerdo</label>
+                <input type="text" id="req-cost" placeholder="Ej. $600 MXN / Por cotizar"
+                  class="w-full text-xs bg-white border border-stone-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-coral">
+              </div>
+              <div class="sm:col-span-9">
+                <input type="text" id="req-desc" required placeholder="Describe brevemente qué necesitan (ej. Video resumen evento anual de lectura)..."
+                  class="w-full text-xs bg-white border border-stone-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-coral">
+              </div>
+              <div class="sm:col-span-3">
+                <button type="submit" class="w-full h-full bg-ink hover:bg-coral text-white font-display font-bold text-xs py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center gap-1.5">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  <span>Añadir</span>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Lista de Peticiones Especiales -->
+          <div id="special-requests-list" class="space-y-3 max-h-[380px] overflow-y-auto pr-1">
+            <!-- Renderizado dinámicamente -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Derecha (5 cols): Última Junta y Próxima Junta -->
+      <div class="lg:col-span-5 flex flex-col gap-5">
+        
+        <!-- Tarjeta Próxima Junta (Destacada en Amarillo Mostaza estilo referencia) -->
+        <div class="bg-mustard rounded-bento-lg p-6 sm:p-7 text-ink relative overflow-hidden shadow-sm">
+          <div class="flex items-start justify-between gap-2 mb-3">
+            <div>
+              <span class="inline-flex items-center gap-1.5 bg-ink text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                <i data-lucide="bell-ring" class="w-3.5 h-3.5 text-mustard"></i>
+                Próxima Junta
+              </span>
+              <h3 class="font-serif-editorial text-2xl sm:text-3xl mt-2">Siguiente Reunión</h3>
+            </div>
+            <span class="w-10 h-10 rounded-full bg-ink text-white flex items-center justify-center font-bold">
+              <i data-lucide="calendar" class="w-5 h-5"></i>
+            </span>
+          </div>
+
+          <div class="space-y-3 bg-white/85 backdrop-blur-sm p-4 rounded-2xl">
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[10px] font-bold uppercase text-stone-500">Fecha</label>
+                <input type="date" id="next-meeting-date" onchange="updateMeeting('next', 'date', this.value)"
+                  class="w-full text-xs font-bold text-ink bg-transparent border-b border-stone-300 py-1 focus:outline-none focus:border-ink">
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold uppercase text-stone-500">Hora</label>
+                <input type="time" id="next-meeting-time" onchange="updateMeeting('next', 'time', this.value)"
+                  class="w-full text-xs font-bold text-ink bg-transparent border-b border-stone-300 py-1 focus:outline-none focus:border-ink">
+              </div>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold uppercase text-stone-500">Modalidad / Enlace</label>
+              <input type="text" id="next-meeting-place" placeholder="Google Meet / Zoom / Presencial" onchange="updateMeeting('next', 'place', this.value)"
+                class="w-full text-xs font-medium text-ink bg-transparent border-b border-stone-300 py-1 focus:outline-none focus:border-ink">
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold uppercase text-stone-500">Agenda / Puntos a revisar</label>
+              <textarea id="next-meeting-agenda" rows="2" onchange="updateMeeting('next', 'agenda', this.value)"
+                class="w-full text-xs text-stone-700 bg-transparent border border-stone-200 rounded-xl p-2 mt-1 focus:outline-none focus:border-ink resize-none"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta Última Junta (Estilo Blanco Editorial) -->
+        <div class="bg-white rounded-bento-lg p-6 sm:p-7 border border-black/5 shadow-sm flex-1">
+          <div class="flex items-start justify-between gap-2 mb-3">
+            <div>
+              <span class="inline-flex items-center gap-1.5 bg-turquoise/15 text-turquoise text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                Bitácora · Última Junta
+              </span>
+              <h3 class="font-serif-editorial text-2xl text-ink mt-1.5">Acuerdos de Reunión</h3>
+            </div>
+            <i data-lucide="history" class="w-5 h-5 text-stone-400"></i>
+          </div>
+
+          <div class="space-y-3">
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[10px] font-bold uppercase text-stone-400">Fecha realizada</label>
+                <input type="date" id="last-meeting-date" onchange="updateMeeting('last', 'date', this.value)"
+                  class="w-full text-xs font-bold text-ink bg-canvas rounded-xl px-3 py-2 focus:outline-none focus:ring-1 focus:ring-turquoise">
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold uppercase text-stone-400">Participantes</label>
+                <input type="text" id="last-meeting-attendees" onchange="updateMeeting('last', 'attendees', this.value)"
+                  class="w-full text-xs font-medium text-ink bg-canvas rounded-xl px-3 py-2 focus:outline-none focus:ring-1 focus:ring-turquoise">
+              </div>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold uppercase text-stone-400">Minuta breve / Acuerdos tomados</label>
+              <textarea id="last-meeting-notes" rows="3" onchange="updateMeeting('last', 'notes', this.value)"
+                class="w-full text-xs text-stone-700 bg-canvas rounded-xl p-3 mt-1 focus:outline-none focus:ring-1 focus:ring-turquoise resize-none leading-relaxed"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER & ESTADO DE SINCRONIZACIÓN (Listo para Firebase) -->
+    <footer class="bg-ink text-white rounded-bento p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="w-3 h-3 rounded-full bg-chameleonGreen animate-pulse"></span>
+        <div class="text-xs">
+          <p class="font-display font-bold text-white" id="storage-status-label">
+            Guardado local activo · Estructura lista para conectar Firebase Firestore
+          </p>
+          <p class="text-stone-400">
+            Servicios digitales (Lucy) × Fundación En Cuentos te Encuentro A.C. (Adela, Margie, Kaori)
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="openResetModal()" class="text-xs text-stone-300 hover:text-mustard underline underline-offset-4 transition-colors">
+          Reiniciar ciclo con datos base
+        </button>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Modal Personalizado de Confirmación para Reiniciar Ciclo (Sin usar confirm()) -->
+  <div id="reset-modal" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-bento max-w-md w-full p-6 shadow-xl border border-black/10">
+      <div class="flex items-center gap-3 text-coral mb-3">
+        <i data-lucide="rotate-ccw" class="w-6 h-6"></i>
+        <h3 class="font-display font-extrabold text-lg text-ink">¿Restaurar datos de ejemplo?</h3>
+      </div>
+      <p class="text-sm text-stone-600 mb-5">
+        Esto restablecerá las 10 tarjetas, el checklist, los pagos y las juntas a los valores iniciales de demostración.
+      </p>
+      <div class="flex justify-end gap-2.5">
+        <button type="button" onclick="closeResetModal()" class="px-4 py-2 rounded-xl text-xs font-bold bg-canvas text-stone-700 hover:bg-stone-200 transition-colors">
+          Cancelar
+        </button>
+        <button type="button" onclick="confirmResetData()" class="px-4 py-2 rounded-xl text-xs font-bold bg-coral text-white hover:opacity-90 transition-opacity">
+          Sí, restaurar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * ============================================================================
+     * ARQUITECTURA DE ESTADO CENTRALIZADO (appState)
+     * Preparada para conectar con Firebase Firestore en el siguiente paso.
+     * Basta con reemplazar la lógica interna de saveData() y loadData() con
+     * setDoc / onSnapshot de Firestore manteniendo exactamente esta estructura.
+     * ============================================================================
+     */
+    const STORAGE_KEY = 'encuentos_servicios_digitales_v1';
+
+    const DEFAULT_STATE = {
+      agreement: {
+        totalContents: 10,
+        cycleDays: 30,
+        monthlyFee: 5000,
+        currency: 'MXN',
+        paymentDay: 18
+      },
+      payment: {
+        billingMonth: 'Noviembre 2026',
+        isPaid: false, // Inicia en pendiente para mostrar la alerta visual del día 18
+        paidDate: '',
+        reference: ''
+      },
+      contents: [
+        {
+          id: 1,
+          title: 'Lectura que transforma infancias',
+          topic: 'Importancia de leer 15 minutos diarios en familia y cómo fortalece el vínculo afectivo.',
+          hasMedia: 'Sí tiene',
+          mediaLocation: 'https://drive.google.com/drive/folders/ejemplo-lectura-familia',
+          format: 'Carrusel',
+          proposedBy: 'Adela',
+          published: true,
+          notes: 'Publicado en Instagram y Facebook con excelente alcance.'
+        },
+        {
+          id: 2,
+          title: 'Taller de Cuentacuentos en Comunidad',
+          topic: 'Resumen emotivo de nuestra visita a la escuela primaria y testimonios de los niños.',
+          hasMedia: 'Sí tiene',
+          mediaLocation: 'https://drive.google.com/drive/folders/ejemplo-taller-escuela',
+          format: 'Reel',
+          proposedBy: 'Margie',
+          published: true,
+          notes: 'Publicado. Lucy editó clips verticales enviados por Margie.'
+        },
+        {
+          id: 3,
+          title: '¿Cómo donar libros en buen estado?',
+          topic: 'Guía rápida con requisitos para donar cuentos infantiles y puntos de recolección activos.',
+          hasMedia: 'Usar banco',
+          mediaLocation: 'Carpeta Drive > Identidad Visual y Recursos',
+          format: 'Post',
+          proposedBy: 'Kaori',
+          published: true,
+          notes: 'Publicado. Se fijó en el perfil.'
+        },
+        {
+          id: 4,
+          title: 'Conoce a nuestro equipo de voluntarios',
+          topic: 'Presentar la labor humana detrás de En Cuentos te Encuentro A.C. e invitar a sumarse.',
+          hasMedia: 'Sí tiene',
+          mediaLocation: 'https://drive.google.com/drive/folders/ejemplo-voluntarios',
+          format: 'Carrusel',
+          proposedBy: 'Adela',
+          published: false,
+          notes: 'En diseño por Lucy. Faltan 2 nombres completos de voluntarias.'
+        },
+        {
+          id: 5,
+          title: 'Recomendación literaria del mes',
+          topic: 'Reseña de un cuento ilustrado sobre empatía y emociones para niños de 6 a 9 años.',
+          hasMedia: 'Sí tiene',
+          mediaLocation: 'WhatsApp grupo Fundación (fotos portada libro)',
+          format: 'Post',
+          proposedBy: 'Margie',
+          published: false,
+          notes: 'Programado para salir este viernes.'
+        },
+        {
+          id: 6,
+          title: 'Detrás de cámaras: preparando maletas viajeras',
+          topic: 'Video dinámico mostrando cómo seleccionamos y sanitizamos los libros que viajan.',
+          hasMedia: 'Pendiente subir',
+          mediaLocation: 'Kaori grabará clips el jueves en bodega',
+          format: 'Reel',
+          proposedBy: 'Kaori',
+          published: false,
+          notes: 'Pendiente recibir videos crudos en Drive para edición.'
+        },
+        {
+          id: 7,
+          title: 'Frase inspiradora sobre la imaginación',
+          topic: 'Cita célebre de literatura infantil vinculada a la misión de la Fundación.',
+          hasMedia: 'Usar banco',
+          mediaLocation: 'Diseño gráfico por Servicios digitales',
+          format: 'Post',
+          proposedBy: 'Lucy',
+          published: false,
+          notes: 'Borrador aprobado.'
+        },
+        {
+          id: 8,
+          title: 'Alianzas con empresas con causa',
+          topic: 'Explicar cómo empresas y padrinos pueden financiar una biblioteca comunitaria.',
+          hasMedia: 'Pendiente subir',
+          mediaLocation: 'Drive > Carpeta Alianzas 2026',
+          format: 'Carrusel',
+          proposedBy: 'Adela',
+          published: false,
+          notes: 'Adela revisando datos de impacto anual para incluir en slide 3.'
+        },
+        {
+          id: 9,
+          title: '',
+          topic: '',
+          hasMedia: 'Pendiente subir',
+          mediaLocation: '',
+          format: 'Por definir',
+          proposedBy: 'Margie',
+          published: false,
+          notes: 'Espacio disponible para tema de cierre de mes.'
+        },
+        {
+          id: 10,
+          title: '',
+          topic: '',
+          hasMedia: 'Pendiente subir',
+          mediaLocation: '',
+          format: 'Por definir',
+          proposedBy: 'Kaori',
+          published: false,
+          notes: 'Espacio disponible para tema de cierre de mes.'
+        }
+      ],
+      specialRequests: [
+        {
+          id: 'req-101',
+          type: 'Presentación PPT',
+          requester: 'Adela',
+          cost: '$850 MXN',
+          description: 'Presentación institucional de 12 diapositivas para reunión con posibles donantes.',
+          status: 'En proceso'
+        },
+        {
+          id: 'req-102',
+          type: 'Reel Extra',
+          requester: 'Kaori',
+          cost: '$600 MXN',
+          description: 'Video resumen especial del festival de lectura del fin de semana.',
+          status: 'Solicitado'
+        }
+      ],
+      meetings: {
+        last: {
+          date: '2026-11-04',
+          attendees: 'Adela, Margie, Kaori y Lucy',
+          notes: 'Se definió trabajar con tablero de 10 tarjetas mensuales y corte de pago cada día 18. La Fundación subirá fotos a Google Drive con el número de tarjeta.'
+        },
+        next: {
+          date: '2026-11-25',
+          time: '11:00',
+          place: 'Google Meet (Enlace recurrente)',
+          agenda: 'Revisar métricas de Reels publicados, cerrar tarjetas 09 y 10, y planear campaña navideña de donación de cuentos.'
+        }
+      },
+      ui: {
+        checklistFilter: 'all'
+      }
+    };
+
+    let appState = {};
+
+    /**
+     * Carga los datos desde LocalStorage (Punto de integración futura con Firebase getDoc/onSnapshot)
+     */
+    function loadData() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          appState = JSON.parse(saved);
+        } else {
+          appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+          saveData(false);
+        }
+      } catch (error) {
+        console.error('Error cargando estado:', error);
+        appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+      }
+    }
+
+    /**
+     * Guarda los datos en LocalStorage (Punto de integración futura con Firebase setDoc/updateDoc)
+     */
+    function saveData(showNotification = true) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+        if (showNotification) {
+          showToast('Cambios guardados automáticamente');
+        }
+      } catch (error) {
+        console.error('Error guardando estado:', error);
+        showToast('No se pudo guardar localmente', 'error');
+      }
+    }
+
+    /**
+     * Notificación visual discreta (reemplaza alert)
+     */
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const bgClass = type === 'error' ? 'bg-coral text-white' : 'bg-ink text-white';
+      toast.className = `${bgClass} text-xs font-medium px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2 transition-all duration-300 opacity-0 translate-y-2`;
+      toast.innerHTML = `<span class="w-2 h-2 rounded-full ${type === 'error' ? 'bg-white' : 'bg-mustard'}"></span><span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('opacity-0', 'translate-y-2');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 2200);
+    }
+
+    /**
+     * Renderizado de la Sección de Pagos (Día 18)
+     */
+    function renderPaymentSection() {
+      const card = document.getElementById('payment-card');
+      const banner = document.getElementById('payment-status-banner');
+      const btnPending = document.getElementById('btn-set-pending');
+      const btnPaid = document.getElementById('btn-set-paid');
+      const dateStamp = document.getElementById('payment-date-stamp');
+      const monthInput = document.getElementById('billing-month');
+      const refInput = document.getElementById('payment-reference');
+
+      monthInput.value = appState.payment.billingMonth;
+      refInput.value = appState.payment.reference || '';
+
+      if (appState.payment.isPaid) {
+        // Estado PAGADO
+        card.className = 'rounded-bento-lg p-6 sm:p-8 transition-all duration-300 border-2 bg-turquoise/10 border-turquoise/40';
+        banner.className = 'mt-3 p-4 rounded-2xl flex items-start gap-3 bg-white border border-turquoise/30 text-ink';
+        banner.innerHTML = `
+          <div class="w-9 h-9 rounded-full bg-turquoise text-white flex items-center justify-center shrink-0 mt-0.5">
+            <i data-lucide="badge-check" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <p class="font-display font-bold text-sm text-turquoise uppercase tracking-wide">Pago Confirmado · Ciclo al Corriente</p>
+            <p class="text-xs sm:text-sm text-stone-700 mt-0.5">
+              El pago adelantado de <strong>$5,000 MXN</strong> correspondiente a <strong>${appState.payment.billingMonth}</strong> ya fue cubierto. ¡Listos para producir los 10 contenidos!
+            </p>
+          </div>
+        `;
+
+        btnPaid.className = 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-display font-bold flex items-center justify-center gap-2 bg-turquoise text-white shadow-sm';
+        btnPending.className = 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-display font-bold flex items-center justify-center gap-2 text-stone-500 hover:text-ink';
+        dateStamp.textContent = appState.payment.paidDate ? `Registrado: ${appState.payment.paidDate}` : 'Al corriente';
+      } else {
+        // Estado PENDIENTE (Recordatorio visual prominente)
+        card.className = 'rounded-bento-lg p-6 sm:p-8 transition-all duration-300 border-2 bg-coral/10 border-coral payment-alert-pulse';
+        banner.className = 'mt-3 p-4 rounded-2xl flex items-start gap-3 bg-coral text-white shadow-sm';
+        banner.innerHTML = `
+          <div class="w-9 h-9 rounded-full bg-mustard text-ink flex items-center justify-center shrink-0 mt-0.5 font-bold">
+            <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <p class="font-display font-extrabold text-sm uppercase tracking-wide text-mustard">Recordatorio Visual: Pago Mensual Pendiente</p>
+            <p class="text-xs sm:text-sm text-white/95 mt-0.5">
+              El mes en curso (<strong>${appState.payment.billingMonth}</strong>) aún no registra pago. Recuerda que la mensualidad de <strong>$5,000 MXN</strong> se cubre por adelantado <strong>cada día 18 del mes</strong>.
+            </p>
+          </div>
+        `;
+
+        btnPending.className = 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-display font-bold flex items-center justify-center gap-2 bg-coral text-white shadow-sm';
+        btnPaid.className = 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-display font-bold flex items-center justify-center gap-2 text-stone-500 hover:text-ink';
+        dateStamp.textContent = 'Corte: Día 18 del mes';
+      }
+      lucide.createIcons();
+    }
+
+    function setPaymentStatus(isPaid) {
+      appState.payment.isPaid = isPaid;
+      if (isPaid) {
+        const today = new Date();
+        appState.payment.paidDate = today.toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' });
+      } else {
+        appState.payment.paidDate = '';
+      }
+      saveData();
+      renderPaymentSection();
+    }
+
+    function updateBillingMonth(value) {
+      appState.payment.billingMonth = value.trim() || 'Ciclo Actual';
+      saveData();
+      renderPaymentSection();
+    }
+
+    function updatePaymentReference(value) {
+      appState.payment.reference = value;
+      saveData();
+    }
+
+    /**
+     * Renderizado de las 10 Tarjetas de Contenido
+     */
+    function getFormatBadgeStyle(format) {
+      switch (format) {
+        case 'Post':
+          return 'bg-turquoise text-white border-turquoise';
+        case 'Carrusel':
+          return 'bg-mustard text-ink border-mustard';
+        case 'Reel':
+          return 'bg-coral text-white border-coral';
+        default:
+          return 'bg-stone-100 text-stone-600 border-stone-200';
+      }
+    }
+
+    function isValidUrl(string) {
+      try {
+        const url = new URL(string);
+        return url.protocol === 'http:' || url.protocol === 'https:';
+      } catch (_) {
+        return false;
+      }
+    }
+
+    function renderContentCards() {
+      const grid = document.getElementById('content-cards-grid');
+      grid.innerHTML = '';
+
+      let completedCount = 0;
+
+      appState.contents.forEach((item) => {
+        const hasTitleAndTopic = item.title.trim() !== '' && item.topic.trim() !== '';
+        if (hasTitleAndTopic) completedCount++;
+
+        const numFormatted = String(item.id).padStart(2, '0');
+        const hasLink = isValidUrl(item.mediaLocation.trim());
+
+        const cardEl = document.createElement('article');
+        cardEl.className = `bento-card bg-white rounded-bento p-5 sm:p-6 border ${hasTitleAndTopic ? 'border-black/10' : 'border-dashed border-stone-300'} flex flex-col justify-between shadow-xs`;
+
+        cardEl.innerHTML = `
+          <div>
+            <!-- Top Row: Número de tarjeta + Responsable + Estado publicado -->
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <div class="flex items-center gap-2.5">
+                <span class="w-9 h-9 rounded-2xl ${hasTitleAndTopic ? 'bg-ink text-white' : 'bg-canvas text-stone-500'} font-display font-extrabold text-sm flex items-center justify-center">
+                  ${numFormatted}
+                </span>
+                <div>
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400 block leading-none">Propone</span>
+                  <select onchange="updateContentField(${item.id}, 'proposedBy', this.value)"
+                    class="text-xs font-bold text-earth bg-transparent focus:outline-none cursor-pointer">
+                    <option value="Adela" ${item.proposedBy === 'Adela' ? 'selected' : ''}>Adela</option>
+                    <option value="Margie" ${item.proposedBy === 'Margie' ? 'selected' : ''}>Margie</option>
+                    <option value="Kaori" ${item.proposedBy === 'Kaori' ? 'selected' : ''}>Kaori</option>
+                    <option value="Lucy" ${item.proposedBy === 'Lucy' ? 'selected' : ''}>Lucy (Agencia)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Indicador visual si ya está publicado -->
+              <button type="button" onclick="toggleContentPublished(${item.id})"
+                title="Cambiar estado de publicación"
+                class="text-[11px] font-bold px-3 py-1 rounded-full flex items-center gap-1.5 transition-colors ${item.published ? 'bg-chameleonGreen/15 text-sage' : 'bg-stone-100 text-stone-500 hover:bg-stone-200'}">
+                <span class="w-2 h-2 rounded-full ${item.published ? 'bg-chameleonGreen' : 'bg-stone-400'}"></span>
+                <span>${item.published ? 'Publicado' : 'En proceso'}</span>
+              </button>
+            </div>
+
+            <!-- Campo Título -->
+            <div class="mb-3">
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-stone-400 mb-1">Título del Contenido</label>
+              <input type="text" value="${escapeHtml(item.title)}"
+                placeholder="Escribe el título del contenido #${numFormatted}..."
+                onchange="updateContentField(${item.id}, 'title', this.value)"
+                class="w-full font-display font-bold text-base text-ink bg-canvas/70 focus:bg-canvas rounded-xl px-3 py-2 border border-transparent focus:border-turquoise focus:outline-none placeholder:font-normal placeholder:text-stone-400">
+            </div>
+
+            <!-- Campo Tema General -->
+            <div class="mb-4">
+              <label class="block text-[10px] font-bold uppercase tracking-wider text-stone-400 mb-1">Tema General / Idea Clave</label>
+              <textarea rows="2"
+                placeholder="Describe brevemente de qué trata este tema para que Lucy lo desarrolle..."
+                onchange="updateContentField(${item.id}, 'topic', this.value)"
+                class="w-full text-xs text-stone-700 bg-canvas/70 focus:bg-canvas rounded-xl px-3 py-2 border border-transparent focus:border-turquoise focus:outline-none resize-none leading-relaxed placeholder:text-stone-400">${escapeHtml(item.topic)}</textarea>
+            </div>
+
+            <!-- Sección Multimedia y Repositorio -->
+            <div class="bg-canvas rounded-2xl p-3.5 mb-4 border border-black/5">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-stone-500 flex items-center gap-1">
+                  <i data-lucide="image" class="w-3.5 h-3.5 text-magenta"></i>
+                  Fotos / Videos
+                </span>
+                <select onchange="updateContentField(${item.id}, 'hasMedia', this.value)"
+                  class="text-[11px] font-bold rounded-lg px-2 py-1 bg-white border border-stone-200 text-ink focus:outline-none">
+                  <option value="Sí tiene" ${item.hasMedia === 'Sí tiene' ? 'selected' : ''}>✅ Sí tiene material</option>
+                  <option value="Pendiente subir" ${item.hasMedia === 'Pendiente subir' ? 'selected' : ''}>⏳ Pendiente subir</option>
+                  <option value="Usar banco" ${item.hasMedia === 'Usar banco' ? 'selected' : ''}>🎨 Usar banco / diseño</option>
+                </select>
+              </div>
+
+              <div class="flex items-center gap-1.5">
+                <input type="text" value="${escapeHtml(item.mediaLocation)}"
+                  placeholder="Pega enlace de Drive o indica dónde está..."
+                  onchange="updateContentField(${item.id}, 'mediaLocation', this.value)"
+                  class="w-full text-xs bg-white border border-stone-200 rounded-xl px-2.5 py-1.5 text-stone-700 focus:outline-none focus:border-magenta">
+                ${hasLink ? `
+                  <a href="${escapeHtml(item.mediaLocation.trim())}" target="_blank" rel="noopener noreferrer"
+                    title="Abrir repositorio en nueva pestaña"
+                    class="shrink-0 w-8 h-8 rounded-xl bg-ink text-white hover:bg-turquoise flex items-center justify-center transition-colors">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer de tarjeta: Selector de Formato por Lucy (Servicios Digitales) -->
+          <div class="pt-3 border-t border-stone-100">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Formato (Define Lucy):</span>
+              <span class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full border ${getFormatBadgeStyle(item.format)}">
+                ${item.format}
+              </span>
+            </div>
+            <div class="grid grid-cols-4 gap-1.5">
+              ${['Por definir', 'Post', 'Carrusel', 'Reel'].map(fmt => `
+                <button type="button" onclick="updateContentField(${item.id}, 'format', '${fmt}')"
+                  class="py-1.5 px-1 rounded-xl text-[11px] font-display font-bold transition-all border ${
+                    item.format === fmt
+                      ? getFormatBadgeStyle(fmt) + ' shadow-xs'
+                      : 'bg-canvas text-stone-500 border-transparent hover:border-stone-300'
+                  }">
+                  ${fmt === 'Por definir' ? 'Definir' : fmt}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+
+        grid.appendChild(cardEl);
+      });
+
+      // Actualizar barra de progreso
+      document.getElementById('cards-progress-text').textContent = `${completedCount} / 10`;
+      document.getElementById('cards-progress-bar').style.width = `${(completedCount / 10) * 100}%`;
+
+      lucide.createIcons();
+    }
+
+    function updateContentField(id, field, value) {
+      const idx = appState.contents.findIndex(c => c.id === id);
+      if (idx !== -1) {
+        appState.contents[idx][field] = value;
+        saveData();
+        renderContentCards();
+        renderChecklist();
+      }
+    }
+
+    function toggleContentPublished(id) {
+      const idx = appState.contents.findIndex(c => c.id === id);
+      if (idx !== -1) {
+        appState.contents[idx].published = !appState.contents[idx].published;
+        saveData();
+        renderContentCards();
+        renderChecklist();
+      }
+    }
+
+    /**
+     * Renderizado de la Lista Checklist de Publicación + Notas
+     */
+    function setChecklistFilter(filter) {
+      appState.ui.checklistFilter = filter;
+      saveData(false);
+      renderChecklist();
+    }
+
+    function renderChecklist() {
+      const container = document.getElementById('checklist-container');
+      const filter = appState.ui.checklistFilter || 'all';
+
+      // Actualizar estilos de botones filtro
+      const pubCount = appState.contents.filter(c => c.published).length;
+      const pendCount = 10 - pubCount;
+
+      const btnAll = document.getElementById('filter-all');
+      const btnPub = document.getElementById('filter-published');
+      const btnPend = document.getElementById('filter-pending');
+
+      btnAll.textContent = `Todos (10)`;
+      btnPub.textContent = `Publicados (${pubCount})`;
+      btnPend.textContent = `Pendientes (${pendCount})`;
+
+      [
+        { el: btnAll, active: filter === 'all' },
+        { el: btnPub, active: filter === 'published' },
+        { el: btnPend, active: filter === 'pending' }
+      ].forEach(b => {
+        b.el.className = b.active
+          ? 'px-3.5 py-2 rounded-xl bg-ink text-white transition-all'
+          : 'px-3.5 py-2 rounded-xl text-stone-600 hover:text-ink transition-all';
+      });
+
+      const filteredItems = appState.contents.filter(item => {
+        if (filter === 'published') return item.published;
+        if (filter === 'pending') return !item.published;
+        return true;
+      });
+
+      container.innerHTML = filteredItems.map(item => {
+        const numFormatted = String(item.id).padStart(2, '0');
+        const displayTitle = item.title.trim() || `Contenido #${numFormatted} (Sin título aún)`;
+
+        return `
+          <div class="py-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div class="flex items-start sm:items-center gap-3.5 lg:w-5/12">
+              <!-- Checkbox interactivo grande -->
+              <button type="button" onclick="toggleContentPublished(${item.id})"
+                class="w-7 h-7 rounded-xl border-2 flex items-center justify-center shrink-0 transition-all ${
+                  item.published
+                    ? 'bg-chameleonGreen border-chameleonGreen text-white'
+                    : 'bg-white border-stone-300 hover:border-ink'
+                }" aria-label="Marcar como publicado">
+                ${item.published ? '<i data-lucide="check" class="w-4 h-4 stroke-[3]"></i>' : ''}
+              </button>
+
+              <div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="text-xs font-display font-extrabold text-stone-400">#${numFormatted}</span>
+                  <span class="font-display font-bold text-sm sm:text-base ${item.published ? 'line-through text-stone-400' : 'text-ink'}">
+                    ${escapeHtml(displayTitle)}
+                  </span>
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ${getFormatBadgeStyle(item.format)}">
+                    ${item.format}
+                  </span>
+                </div>
+                <span class="text-[11px] text-stone-500">
+                  Propone: <strong>${item.proposedBy}</strong> · Estado: <strong class="${item.published ? 'text-sage' : 'text-coral'}">${item.published ? 'Ya publicado' : 'No publicado'}</strong>
+                </span>
+              </div>
+            </div>
+
+            <!-- Campo de Notas / Motivo por el que no se ha publicado o comentarios -->
+            <div class="lg:w-7/12 flex items-center gap-2">
+              <div class="relative w-full">
+                <span class="absolute left-3 top-2.5 text-stone-400">
+                  <i data-lucide="message-square-text" class="w-4 h-4"></i>
+                </span>
+                <input type="text" value="${escapeHtml(item.notes)}"
+                  placeholder="Añadir nota: fecha de publicación o motivo por el cual aún no sale..."
+                  onchange="updateContentField(${item.id}, 'notes', this.value)"
+                  class="w-full text-xs bg-canvas border border-stone-200/80 focus:bg-white focus:border-sage rounded-xl pl-9 pr-3 py-2.5 text-stone-700 focus:outline-none">
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    /**
+     * Renderizado y Gestión de Peticiones Especiales
+     */
+    function renderSpecialRequests() {
+      const list = document.getElementById('special-requests-list');
+
+      if (!appState.specialRequests || appState.specialRequests.length === 0) {
+        list.innerHTML = `
+          <div class="text-center py-8 bg-canvas/60 rounded-2xl border border-dashed border-stone-300">
+            <p class="text-xs text-stone-500">No hay peticiones especiales registradas por ahora.</p>
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = appState.specialRequests.map(req => {
+        const statusColors = {
+          'Solicitado': 'bg-mustard/25 text-ink',
+          'En proceso': 'bg-turquoise/15 text-turquoise',
+          'Entregado': 'bg-chameleonGreen/20 text-sage'
+        };
+
+        return `
+          <div class="p-4 rounded-2xl bg-canvas border border-black/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <span class="text-xs font-display font-extrabold text-ink bg-white px-2.5 py-0.5 rounded-lg border border-black/5">
+                  ${escapeHtml(req.type)}
+                </span>
+                <span class="text-[11px] font-semibold text-earth">Solicita: ${escapeHtml(req.requester)}</span>
+                ${req.cost ? `<span class="text-[11px] font-bold text-coral">· ${escapeHtml(req.cost)}</span>` : ''}
+              </div>
+              <p class="text-xs text-stone-700 leading-relaxed">${escapeHtml(req.description)}</p>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              <select onchange="updateRequestStatus('${req.id}', this.value)"
+                class="text-[11px] font-bold px-2.5 py-1.5 rounded-xl border border-black/10 focus:outline-none ${statusColors[req.status] || 'bg-white'}">
+                <option value="Solicitado" ${req.status === 'Solicitado' ? 'selected' : ''}>Solicitado</option>
+                <option value="En proceso" ${req.status === 'En proceso' ? 'selected' : ''}>En proceso</option>
+                <option value="Entregado" ${req.status === 'Entregado' ? 'selected' : ''}>Entregado ✓</option>
+              </select>
+
+              <button type="button" onclick="deleteSpecialRequest('${req.id}')" title="Eliminar petición"
+                class="p-1.5 rounded-xl text-stone-400 hover:text-coral hover:bg-white transition-colors">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function addSpecialRequest(event) {
+      event.preventDefault();
+      const type = document.getElementById('req-type').value;
+      const requester = document.getElementById('req-requester').value;
+      const cost = document.getElementById('req-cost').value.trim();
+      const description = document.getElementById('req-desc').value.trim();
+
+      if (!description) return;
+
+      appState.specialRequests.unshift({
+        id: 'req-' + Date.now(),
+        type,
+        requester,
+        cost: cost || 'Por cotizar',
+        description,
+        status: 'Solicitado'
+      });
+
+      document.getElementById('req-desc').value = '';
+      document.getElementById('req-cost').value = '';
+
+      saveData();
+      renderSpecialRequests();
+    }
+
+    function updateRequestStatus(id, newStatus) {
+      const req = appState.specialRequests.find(r => r.id === id);
+      if (req) {
+        req.status = newStatus;
+        saveData();
+        renderSpecialRequests();
+      }
+    }
+
+    function deleteSpecialRequest(id) {
+      appState.specialRequests = appState.specialRequests.filter(r => r.id !== id);
+      saveData();
+      renderSpecialRequests();
+    }
+
+    /**
+     * Renderizado y Edición de Última Junta y Próxima Junta
+     */
+    function renderMeetings() {
+      document.getElementById('next-meeting-date').value = appState.meetings.next.date || '';
+      document.getElementById('next-meeting-time').value = appState.meetings.next.time || '';
+      document.getElementById('next-meeting-place').value = appState.meetings.next.place || '';
+      document.getElementById('next-meeting-agenda').value = appState.meetings.next.agenda || '';
+
+      document.getElementById('last-meeting-date').value = appState.meetings.last.date || '';
+      document.getElementById('last-meeting-attendees').value = appState.meetings.last.attendees || '';
+      document.getElementById('last-meeting-notes').value = appState.meetings.last.notes || '';
+    }
+
+    function updateMeeting(which, field, value) {
+      appState.meetings[which][field] = value;
+      saveData();
+    }
+
+    /**
+     * Modal de Reinicio de Ciclo
+     */
+    function openResetModal() {
+      const modal = document.getElementById('reset-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeResetModal() {
+      const modal = document.getElementById('reset-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function confirmResetData() {
+      appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+      saveData(false);
+      renderAll();
+      closeResetModal();
+      showToast('Datos restaurados al ciclo inicial');
+    }
+
+    /**
+     * Utilidad de seguridad para escapar HTML en inputs
+     */
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    /**
+     * Inicialización general
+     */
+    function renderAll() {
+      renderPaymentSection();
+      renderContentCards();
+      renderChecklist();
+      renderSpecialRequests();
+      renderMeetings();
+      lucide.createIcons();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadData();
+      renderAll();
+    });
+  </script>
+</body>
+</html>
