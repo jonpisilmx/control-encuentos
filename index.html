@@ -647,6 +647,30 @@
       min-height: 58px;
     }
 
+    .desired-date-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 5px 8px;
+    }
+
+    .desired-date-wrap input[type="date"] {
+      border: none;
+      background: transparent;
+      padding: 3px 4px;
+      font-size: 12.5px;
+      font-weight: 600;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .desired-date-wrap input[type="date"]:focus {
+      outline: none;
+    }
+
     .repo-row {
       display: grid;
       grid-template-columns: 1fr 1.1fr;
@@ -1208,7 +1232,7 @@
 
   <script>
     const BASE_PACKAGE_PRICE = 5000;
-    const STORAGE_KEY = 'enCuentos_serviciosDigitales_v4';
+    const STORAGE_KEY = 'enCuentos_serviciosDigitales_v5';
 
     const firebaseConfig = {
       apiKey: "AIzaSyA7Bzw44UvKRW1wG8NpfCorbGLYj3M1aYI",
@@ -1223,6 +1247,7 @@
       id: idx + 1,
       title: idx === 0 ? 'Bienvenida al ciclo mensual de lectura' : '',
       topic: idx === 0 ? 'Presentar el impacto de los talleres de narración oral en comunidades.' : '',
+      desiredDate: idx === 0 ? '2026-11-22' : '',
       hasMedia: idx === 0 ? 'si' : 'pendiente',
       repoUrl: idx === 0 ? 'Google Photos' : '',
       format: idx === 0 ? 'Carrusel' : 'Por definir (Lucy)',
@@ -1276,6 +1301,7 @@
           ...base,
           ...incoming,
           id: idx + 1,
+          desiredDate: incoming.desiredDate || '',
           publishDate: incoming.publishDate || ''
         };
       });
@@ -1459,6 +1485,21 @@
             <textarea data-index="${index}" data-field="topic" placeholder="Idea clave o mensaje a comunicar...">${escapeHtml(card.topic)}</textarea>
           </div>
 
+          <div class="field-group">
+            <label>Fecha deseada de publicación</label>
+            <div class="desired-date-wrap">
+              <button type="button" class="btn-calendar-trigger" data-open-desired-calendar="${index}" title="Elegir fecha deseada">📅</button>
+              <input
+                type="date"
+                id="desiredDate_${index}"
+                data-index="${index}"
+                data-field="desiredDate"
+                value="${escapeHtml(card.desiredDate || '')}"
+                aria-label="Fecha deseada de publicación del contenido #${card.id}"
+              />
+            </div>
+          </div>
+
           <div class="repo-row">
             <div class="field-group">
               <label>¿Hay fotos/video?</label>
@@ -1631,6 +1672,21 @@
 
     // Delegación de eventos en las 10 tarjetas
     const cardsContainer = document.getElementById('cardsGridContainer');
+    cardsContainer.addEventListener('click', (e) => {
+      const calBtn = e.target.closest('[data-open-desired-calendar]');
+      if (calBtn) {
+        const idx = calBtn.dataset.openDesiredCalendar;
+        const dateInput = document.getElementById('desiredDate_' + idx);
+        if (dateInput) {
+          if (typeof dateInput.showPicker === 'function') {
+            dateInput.showPicker();
+          } else {
+            dateInput.focus();
+          }
+        }
+      }
+    });
+
     cardsContainer.addEventListener('input', (e) => {
       const target = e.target;
       const idx = target.dataset.index;
