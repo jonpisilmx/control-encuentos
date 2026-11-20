@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>En cuentos te encuentro · Panel de administración</title>
+  <title>En cuentos te encuentro · Escritorio de trabajo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -407,6 +407,26 @@
       flex-wrap: wrap;
     }
 
+    .bank-info-box {
+      margin-top: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(20, 20, 20, 0.14);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--accent-ink);
+    }
+
+    .bank-info-title {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+      display: block;
+    }
+
     .payment-toggle-btn {
       border: none;
       border-radius: 999px;
@@ -647,9 +667,9 @@
 
     .check-row {
       display: grid;
-      grid-template-columns: auto 190px 130px 1fr;
+      grid-template-columns: auto 190px 135px 195px 1fr;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       padding: 12px 14px;
       border-radius: var(--radius-md);
       background: var(--bg-canvas);
@@ -702,6 +722,49 @@
     .status-chip.pending {
       background: #FEF3C7;
       color: #92400E;
+    }
+
+    .pub-date-picker-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 5px 8px;
+    }
+
+    .btn-calendar-trigger {
+      background: var(--card-stone);
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--accent-ink);
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+
+    .btn-calendar-trigger:hover {
+      background: var(--accent-yellow);
+    }
+
+    .pub-date-input {
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .pub-date-input:focus {
+      outline: none;
     }
 
     .check-note-input {
@@ -834,6 +897,12 @@
       color: var(--accent-ink);
     }
 
+    @media (max-width: 1100px) {
+      .check-row {
+        grid-template-columns: auto 1fr auto;
+      }
+    }
+
     @media (max-width: 980px) {
       .card-stone,
       .card-olive,
@@ -908,7 +977,7 @@
         <path d="M-40 120C160 20 340 175 560 95C780 15 960 165 1180 85C1310 38 1400 70 1490 50" stroke="#FFB800" stroke-width="46" stroke-linecap="round"/>
       </svg>
       <div class="hero-content">
-        <span class="hero-kicker">Panel de administración</span>
+        <span class="hero-kicker">Escritorio de trabajo</span>
         <h1 class="hero-title">En cuentos<br />te encuentro</h1>
         <p class="hero-subtitle">
           Tablero operativo entre <strong>Servicios digitales (Lucy)</strong> y <strong>Adela, Margie y Kaori</strong> para visualizar acuerdos, insumos multimedia, fechas de corte y publicaciones mensuales.
@@ -955,7 +1024,7 @@
             <strong>1. Fundación (Adela, Margie, Kaori):</strong> Llenan las 10 tarjetas con <em>título</em>, <em>tema general</em> e indican si existen <em>imágenes/videos</em> y dónde están alojados.
           </li>
           <li>
-            <strong>2. Agencia (Lucy):</strong> Desarrolla el guion/copy de cada pieza y elige el formato ideal (<strong>Post, Carrusel o Reel</strong>) según el objetivo.
+            <strong>2. Agencia (Lucy):</strong> Desarrolla el guion/copy de cada pieza y elige el formato ideal (<strong>Post, Carrusel o Reel</strong>) según el objetivo. Edición de materiales finales, subida de contenido a instagram y creación de caption en cada post.
           </li>
         </ul>
       </article>
@@ -997,7 +1066,7 @@
         </div>
       </article>
 
-      <!-- Tarjeta 5: Zona de Pagos con control independiente por mes -->
+      <!-- Tarjeta 5: Zona de Pagos con control independiente por mes y datos bancarios -->
       <article id="pagos" class="bento-card card-yellow">
         <div class="payment-header">
           <div>
@@ -1006,6 +1075,11 @@
             <p style="font-size: 13.5px; max-width: 440px;">
               Los pagos se realizan <strong>por adelantado cada día 18 del mes</strong> ($5,000 MXN base + peticiones especiales aprobadas). Cada mes se administra de forma independiente.
             </p>
+            <div class="bank-info-box">
+              <span class="bank-info-title">Datos para transferencia</span>
+              <strong>Lucero Espinosa Collazo</strong><br />
+              CLABE <strong>002180701234320511</strong> · <strong>Banamex</strong>
+            </div>
           </div>
 
           <button id="paymentToggleBtn" type="button" class="payment-toggle-btn is-pending">
@@ -1134,7 +1208,7 @@
 
   <script>
     const BASE_PACKAGE_PRICE = 5000;
-    const STORAGE_KEY = 'enCuentos_serviciosDigitales_v3';
+    const STORAGE_KEY = 'enCuentos_serviciosDigitales_v4';
 
     const firebaseConfig = {
       apiKey: "AIzaSyA7Bzw44UvKRW1wG8NpfCorbGLYj3M1aYI",
@@ -1150,9 +1224,10 @@
       title: idx === 0 ? 'Bienvenida al ciclo mensual de lectura' : '',
       topic: idx === 0 ? 'Presentar el impacto de los talleres de narración oral en comunidades.' : '',
       hasMedia: idx === 0 ? 'si' : 'pendiente',
-      repoUrl: idx === 0 ? 'Google Drive / Carpeta Taller Noviembre' : '',
+      repoUrl: idx === 0 ? 'Google Photos' : '',
       format: idx === 0 ? 'Carrusel' : 'Por definir (Lucy)',
       published: false,
+      publishDate: '',
       note: ''
     }));
 
@@ -1193,6 +1268,19 @@
     let docRef = null;
     let saveTimer = null;
 
+    function normalizeCards(cardsList) {
+      return Array.from({ length: 10 }, (_, idx) => {
+        const base = structuredClone(defaultCards[idx]);
+        const incoming = Array.isArray(cardsList) && cardsList[idx] ? cardsList[idx] : {};
+        return {
+          ...base,
+          ...incoming,
+          id: idx + 1,
+          publishDate: incoming.publishDate || ''
+        };
+      });
+    }
+
     function loadLocalFallback() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
@@ -1205,9 +1293,7 @@
             ...defaultState.paymentsByMonth,
             ...(parsed.paymentsByMonth || {})
           },
-          cards: Array.isArray(parsed.cards) && parsed.cards.length === 10
-            ? parsed.cards
-            : structuredClone(defaultCards),
+          cards: normalizeCards(parsed.cards),
           specialRequests: Array.isArray(parsed.specialRequests)
             ? parsed.specialRequests
             : []
@@ -1263,9 +1349,7 @@
                 ...defaultState.paymentsByMonth,
                 ...(cloudData.paymentsByMonth || {})
               },
-              cards: Array.isArray(cloudData.cards) && cloudData.cards.length === 10
-                ? cloudData.cards
-                : structuredClone(defaultCards),
+              cards: normalizeCards(cloudData.cards),
               specialRequests: Array.isArray(cloudData.specialRequests)
                 ? cloudData.specialRequests
                 : []
@@ -1348,6 +1432,9 @@
           filledCount++;
         }
 
+        const repoOptions = ['Whatsapp', 'Google Photos', 'Album iPhone'];
+        const hasCustomRepo = card.repoUrl && !repoOptions.includes(card.repoUrl);
+
         const article = document.createElement('article');
         article.className = 'content-card' + (card.title.trim() && card.topic.trim() ? ' is-complete' : '');
 
@@ -1383,7 +1470,13 @@
 
             <div class="field-group">
               <label>Repositorio / Carpeta</label>
-              <input type="text" data-index="${index}" data-field="repoUrl" placeholder="Link Drive, carpeta o álbum..." value="${escapeHtml(card.repoUrl)}" />
+              <select data-index="${index}" data-field="repoUrl" aria-label="Repositorio o carpeta">
+                <option value="" ${card.repoUrl === '' ? 'selected' : ''}>Seleccionar...</option>
+                <option value="Whatsapp" ${card.repoUrl === 'Whatsapp' ? 'selected' : ''}>Whatsapp</option>
+                <option value="Google Photos" ${card.repoUrl === 'Google Photos' ? 'selected' : ''}>Google Photos</option>
+                <option value="Album iPhone" ${card.repoUrl === 'Album iPhone' ? 'selected' : ''}>Album iPhone</option>
+                ${hasCustomRepo ? `<option value="${escapeHtml(card.repoUrl)}" selected>${escapeHtml(card.repoUrl)}</option>` : ''}
+              </select>
             </div>
           </div>
         `;
@@ -1422,11 +1515,23 @@
             ${card.published ? 'Publicado (' + escapeHtml(card.format) + ')' : 'No publicado'}
           </span>
 
+          <div class="pub-date-picker-wrap" title="Fecha de publicación">
+            <button type="button" class="btn-calendar-trigger" data-open-calendar="${index}" title="Elegir fecha en calendario">📅</button>
+            <input
+              type="date"
+              class="pub-date-input"
+              id="pubDate_${index}"
+              data-pubdate-index="${index}"
+              value="${escapeHtml(card.publishDate || '')}"
+              aria-label="Fecha de publicación del contenido #${card.id}"
+            />
+          </div>
+
           <input
             type="text"
             class="check-note-input"
             data-note-index="${index}"
-            placeholder="Notas: fecha de salida, motivo si sigue pendiente o ajustes..."
+            placeholder="Notas: motivo si sigue pendiente, enlace o ajustes..."
             value="${escapeHtml(card.note)}"
           />
         `;
@@ -1552,12 +1657,34 @@
 
     // Delegación en Checklist
     const checklistContainer = document.getElementById('checklistContainer');
+    checklistContainer.addEventListener('click', (e) => {
+      const calBtn = e.target.closest('[data-open-calendar]');
+      if (calBtn) {
+        const idx = calBtn.dataset.openCalendar;
+        const dateInput = document.getElementById('pubDate_' + idx);
+        if (dateInput) {
+          if (typeof dateInput.showPicker === 'function') {
+            dateInput.showPicker();
+          } else {
+            dateInput.focus();
+          }
+        }
+      }
+    });
+
     checklistContainer.addEventListener('change', (e) => {
       const checkIdx = e.target.dataset.checkIndex;
       if (checkIdx !== undefined) {
         appState.cards[checkIdx].published = e.target.checked;
         saveState();
         renderChecklist();
+        return;
+      }
+
+      const pubDateIdx = e.target.dataset.pubdateIndex;
+      if (pubDateIdx !== undefined) {
+        appState.cards[pubDateIdx].publishDate = e.target.value;
+        saveState();
       }
     });
 
