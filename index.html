@@ -802,9 +802,16 @@
     }
 
     /* SPECIAL REQUESTS */
+    .special-summary-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .special-grid {
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 390px 1fr;
       gap: 20px;
     }
 
@@ -815,6 +822,13 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
+      height: fit-content;
+    }
+
+    .special-dates-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
 
     .btn-primary {
@@ -844,13 +858,21 @@
       background: var(--card-white);
       border: 1px solid var(--border-soft);
       border-radius: var(--radius-lg);
-      padding: 16px 20px;
+      padding: 18px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
       flex-wrap: wrap;
       box-shadow: var(--shadow-soft);
+    }
+
+    .special-item.is-paid-item {
+      border-left: 5px solid #16A34A;
+    }
+
+    .special-item.is-pending-item {
+      border-left: 5px solid var(--accent-terracotta);
     }
 
     .special-item-info h4 {
@@ -864,10 +886,46 @@
       color: var(--text-muted);
     }
 
+    .special-dates-meta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
     .special-item-actions {
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .special-pay-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 6px 13px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+
+    .special-pay-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .special-pay-btn.paid {
+      background: #DCFCE7;
+      color: #166534;
+    }
+
+    .special-pay-btn.pending {
+      background: #FEF3C7;
+      color: #92400E;
     }
 
     .price-badge {
@@ -960,7 +1018,8 @@
         grid-template-columns: 1fr;
       }
 
-      .repo-row {
+      .repo-row,
+      .special-dates-row {
         grid-template-columns: 1fr;
       }
     }
@@ -1090,14 +1149,14 @@
         </div>
       </article>
 
-      <!-- Tarjeta 5: Zona de Pagos con control independiente por mes y datos bancarios -->
+      <!-- Tarjeta 5: Zona de Pagos independiente de la iguala mensual -->
       <article id="pagos" class="bento-card card-yellow">
         <div class="payment-header">
           <div>
             <span class="pill-tag pill-dark">Administración · Corte día 18</span>
             <h2 class="serif-heading">Estado de Pago Mensual</h2>
             <p style="font-size: 13.5px; max-width: 440px;">
-              Los pagos se realizan <strong>por adelantado cada día 18 del mes</strong> ($5,000 MXN base + peticiones especiales aprobadas). Cada mes se administra de forma independiente.
+              La iguala mensual es de <strong>$5,000 MXN por adelantado cada día 18 del mes</strong>. Cada mes se administra de forma independiente y las peticiones especiales llevan su propio control de pagos.
             </p>
             <div class="bank-info-box">
               <span class="bank-info-title">Datos para transferencia</span>
@@ -1134,7 +1193,7 @@
           </select>
 
           <div class="payment-total-chip" id="paymentTotalChip">
-            Total del ciclo: $5,000 MXN
+            Iguala mensual: $5,000 MXN
           </div>
         </div>
       </article>
@@ -1146,7 +1205,7 @@
         <div>
           <h2>Tablero de 10 Contenidos</h2>
           <p>
-            La Fundación completa <strong>título, tema general y ubicación del material</strong>. Lucy asigna el formato y desarrolla cada pieza.
+            La Fundación completa <strong>título, tema general, fecha deseada y ubicación del material</strong>. Lucy asigna el formato y desarrolla cada pieza.
           </p>
         </div>
         <div class="progress-pill" id="cardsProgressPill">0 / 10 tarjetas con tema</div>
@@ -1176,10 +1235,13 @@
         <div>
           <h2>Peticiones Especiales</h2>
           <p>
-            ¿Necesitan piezas fuera del paquete mensual de 10 contenidos? Regístralas aquí sin salir del tablero.
+            Registro independiente de piezas fuera del paquete mensual de 10 contenidos, con fechas de petición y entrega y control propio de pagos.
           </p>
         </div>
-        <div class="progress-pill" id="specialTotalPill">Extras aprobados: $0 MXN</div>
+        <div class="special-summary-strip">
+          <div class="progress-pill" id="specialPaidPill">Pagado: $0 MXN</div>
+          <div class="progress-pill" id="specialPendingPill">Pago pendiente: $0 MXN</div>
+        </div>
       </div>
 
       <div class="special-grid">
@@ -1210,6 +1272,26 @@
             </select>
           </div>
 
+          <div class="special-dates-row">
+            <div class="field-group">
+              <label for="specialRequestDate">Fecha de petición</label>
+              <input type="date" id="specialRequestDate" required />
+            </div>
+
+            <div class="field-group">
+              <label for="specialDeliveryDate">Fecha de entrega</label>
+              <input type="date" id="specialDeliveryDate" required />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="specialPaymentStatus">Estado de pago de la petición</label>
+            <select id="specialPaymentStatus">
+              <option value="pendiente">Pago pendiente</option>
+              <option value="pagado">Pagado</option>
+            </select>
+          </div>
+
           <button type="submit" class="btn-primary">+ Agregar petición especial</button>
         </form>
 
@@ -1232,7 +1314,7 @@
 
   <script>
     const BASE_PACKAGE_PRICE = 5000;
-    const STORAGE_KEY = 'enCuentos_serviciosDigitales_v5';
+    const STORAGE_KEY = 'enCuentos_serviciosDigitales_v6';
 
     const firebaseConfig = {
       apiKey: "AIzaSyA7Bzw44UvKRW1wG8NpfCorbGLYj3M1aYI",
@@ -1283,6 +1365,9 @@
           type: 'Reel extra',
           title: 'Cápsula testimonial de voluntariado',
           requester: 'Adela',
+          requestDate: '2026-11-10',
+          deliveryDate: '2026-11-17',
+          paymentStatus: 'pendiente',
           price: 500
         }
       ]
@@ -1307,6 +1392,17 @@
       });
     }
 
+    function normalizeSpecialRequests(items) {
+      if (!Array.isArray(items)) return [];
+      return items.map((item) => ({
+        ...item,
+        requestDate: item.requestDate || '',
+        deliveryDate: item.deliveryDate || '',
+        paymentStatus: item.paymentStatus === 'pagado' ? 'pagado' : 'pendiente',
+        price: Number(item.price || 0)
+      }));
+    }
+
     function loadLocalFallback() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
@@ -1320,9 +1416,7 @@
             ...(parsed.paymentsByMonth || {})
           },
           cards: normalizeCards(parsed.cards),
-          specialRequests: Array.isArray(parsed.specialRequests)
-            ? parsed.specialRequests
-            : []
+          specialRequests: normalizeSpecialRequests(parsed.specialRequests)
         };
       } catch (e) {
         return structuredClone(defaultState);
@@ -1376,9 +1470,7 @@
                 ...(cloudData.paymentsByMonth || {})
               },
               cards: normalizeCards(cloudData.cards),
-              specialRequests: Array.isArray(cloudData.specialRequests)
-                ? cloudData.specialRequests
-                : []
+              specialRequests: normalizeSpecialRequests(cloudData.specialRequests)
             };
 
             localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
@@ -1406,8 +1498,23 @@
       return '$' + Number(amount || 0).toLocaleString('es-MX') + ' MXN';
     }
 
-    function getExtrasTotal() {
-      return appState.specialRequests.reduce((sum, item) => sum + Number(item.price || 0), 0);
+    function formatDateShort(dateStr) {
+      if (!dateStr) return 'Por definir';
+      const parts = String(dateStr).split('-');
+      if (parts.length !== 3) return dateStr;
+      return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    }
+
+    function getSpecialTotals() {
+      return appState.specialRequests.reduce((acc, item) => {
+        const amt = Number(item.price || 0);
+        if (item.paymentStatus === 'pagado') {
+          acc.paid += amt;
+        } else {
+          acc.pending += amt;
+        }
+        return acc;
+      }, { paid: 0, pending: 0 });
     }
 
     function renderMeetingsAndPayments() {
@@ -1441,10 +1548,8 @@
         bannerText.textContent = `⚠️ RECORDATORIO VISUAL: El mes seleccionado (${appState.currentMonth}) aún no registra pago. Corte: día 18.`;
       }
 
-      const extras = getExtrasTotal();
-      const totalCycle = BASE_PACKAGE_PRICE + extras;
       document.getElementById('paymentTotalChip').textContent =
-        `Total del ciclo: ${formatCurrency(totalCycle)} (Base $5,000 + Extras ${formatCurrency(extras)})`;
+        `Iguala mensual: ${formatCurrency(BASE_PACKAGE_PRICE)} (registro independiente de extras)`;
     }
 
     function renderCardsGrid() {
@@ -1598,14 +1703,27 @@
         `;
       } else {
         appState.specialRequests.forEach((item) => {
+          const isPaid = item.paymentStatus === 'pagado';
           const div = document.createElement('div');
-          div.className = 'special-item';
+          div.className = 'special-item ' + (isPaid ? 'is-paid-item' : 'is-pending-item');
           div.innerHTML = `
             <div class="special-item-info">
               <h4>${escapeHtml(item.type)} · ${escapeHtml(item.title)}</h4>
               <p>Solicitado por: <strong>${escapeHtml(item.requester)}</strong></p>
+              <div class="special-dates-meta">
+                <span>📥 Petición: ${formatDateShort(item.requestDate)}</span>
+                <span>📤 Entrega: ${formatDateShort(item.deliveryDate)}</span>
+              </div>
             </div>
             <div class="special-item-actions">
+              <button
+                type="button"
+                class="special-pay-btn ${isPaid ? 'paid' : 'pending'}"
+                data-toggle-special-pay="${item.id}"
+                title="Cambiar estado de pago de esta petición"
+              >
+                ${isPaid ? '✅ Pagado' : '⏳ Pago pendiente'}
+              </button>
               <span class="price-badge">${formatCurrency(item.price)}</span>
               <button type="button" class="btn-delete" data-delete-special="${item.id}">Eliminar</button>
             </div>
@@ -1614,8 +1732,9 @@
         });
       }
 
-      document.getElementById('specialTotalPill').textContent =
-        `Extras aprobados: ${formatCurrency(getExtrasTotal())}`;
+      const totals = getSpecialTotals();
+      document.getElementById('specialPaidPill').textContent = `Pagado: ${formatCurrency(totals.paid)}`;
+      document.getElementById('specialPendingPill').textContent = `Pago pendiente: ${formatCurrency(totals.pending)}`;
     }
 
     function renderAll() {
@@ -1759,12 +1878,18 @@
       const selectedOption = typeSelect.options[typeSelect.selectedIndex];
       const titleInput = document.getElementById('specialTitle');
       const requesterInput = document.getElementById('specialRequester');
+      const requestDateInput = document.getElementById('specialRequestDate');
+      const deliveryDateInput = document.getElementById('specialDeliveryDate');
+      const paymentStatusSelect = document.getElementById('specialPaymentStatus');
 
       const newReq = {
         id: Date.now(),
         type: typeSelect.value,
         title: titleInput.value.trim(),
         requester: requesterInput.value,
+        requestDate: requestDateInput.value,
+        deliveryDate: deliveryDateInput.value,
+        paymentStatus: paymentStatusSelect.value === 'pagado' ? 'pagado' : 'pendiente',
         price: Number(selectedOption.dataset.price || 0)
       };
 
@@ -1774,16 +1899,30 @@
       titleInput.value = '';
       saveState();
       renderSpecialRequests();
-      renderMeetingsAndPayments();
     });
 
     document.getElementById('specialRequestsList').addEventListener('click', (e) => {
+      const toggleId = e.target.dataset.toggleSpecialPay;
+      if (toggleId) {
+        appState.specialRequests = appState.specialRequests.map((item) => {
+          if (String(item.id) === String(toggleId)) {
+            return {
+              ...item,
+              paymentStatus: item.paymentStatus === 'pagado' ? 'pendiente' : 'pagado'
+            };
+          }
+          return item;
+        });
+        saveState();
+        renderSpecialRequests();
+        return;
+      }
+
       const delId = e.target.dataset.deleteSpecial;
       if (delId) {
         appState.specialRequests = appState.specialRequests.filter(item => String(item.id) !== String(delId));
         saveState();
         renderSpecialRequests();
-        renderMeetingsAndPayments();
       }
     });
 
