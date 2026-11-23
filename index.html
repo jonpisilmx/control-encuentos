@@ -289,6 +289,163 @@
       color: #FFFFFF;
     }
 
+    /* MINUTA DE LA RECIENTE JUNTA */
+    .card-minuta {
+      background-color: var(--card-white);
+      border: 1px solid var(--border-soft);
+      grid-column: span 12;
+      gap: 18px;
+    }
+
+    .minuta-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .minuta-editor-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .minuta-editor-box label,
+    .minuta-actions-box label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+
+    .minuta-textarea {
+      width: 100%;
+      min-height: 155px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-soft);
+      background: var(--bg-canvas);
+      font-family: inherit;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-main);
+      resize: vertical;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .minuta-textarea:focus {
+      outline: none;
+      border-color: var(--chameleon-teal);
+      background: #FFFFFF;
+    }
+
+    .minuta-actions-box {
+      background: var(--card-stone);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .minuta-add-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .minuta-add-row input {
+      flex: 1;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background: #FFFFFF;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .minuta-add-row input:focus {
+      outline: none;
+      border-color: var(--chameleon-teal);
+    }
+
+    .btn-minuta-add {
+      background: var(--accent-ink);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      padding: 9px 14px;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .btn-minuta-add:hover {
+      background: var(--accent-terracotta);
+    }
+
+    .minuta-action-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 190px;
+      overflow-y: auto;
+    }
+
+    .minuta-action-item {
+      background: #FFFFFF;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 9px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .minuta-action-item.is-done span {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    .minuta-action-check {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer;
+      flex: 1;
+      font-weight: 600;
+    }
+
+    .minuta-action-check input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: #16A34A;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .btn-mini-del {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .btn-mini-del:hover {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+
     .card-terracotta {
       background-color: var(--accent-terracotta);
       color: #FFFFFF;
@@ -538,6 +695,49 @@
       max-width: 620px;
     }
 
+    .section-head-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .period-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card-white);
+      border: 1px solid var(--border-soft);
+      padding: 6px 10px;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .btn-period-nav {
+      background: var(--card-stone);
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--accent-ink);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-period-nav:hover {
+      background: var(--accent-yellow);
+    }
+
+    .period-range-label {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent-ink);
+      padding: 0 4px;
+      white-space: nowrap;
+    }
+
     .progress-pill {
       background: var(--card-white);
       border: 1px solid var(--border-soft);
@@ -674,6 +874,12 @@
     .repo-row {
       display: grid;
       grid-template-columns: 1fr 1.1fr;
+      gap: 8px;
+    }
+
+    .links-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
 
@@ -994,6 +1200,10 @@
         grid-column: span 12;
       }
 
+      .minuta-grid {
+        grid-template-columns: 1fr;
+      }
+
       .special-grid {
         grid-template-columns: 1fr;
       }
@@ -1019,6 +1229,7 @@
       }
 
       .repo-row,
+      .links-row,
       .special-dates-row {
         grid-template-columns: 1fr;
       }
@@ -1039,10 +1250,11 @@
 
       <nav class="nav-links" aria-label="Navegación interna">
         <a href="#acuerdos">Acuerdos<sup>01</sup></a>
-        <a href="#pagos">Pagos<sup>02</sup></a>
-        <a href="#tarjetas">10 Contenidos<sup>03</sup></a>
-        <a href="#checklist">Publicación<sup>04</sup></a>
-        <a href="#especiales">Extras<sup>05</sup></a>
+        <a href="#minuta">Minuta<sup>02</sup></a>
+        <a href="#pagos">Pagos<sup>03</sup></a>
+        <a href="#tarjetas">10 Contenidos<sup>04</sup></a>
+        <a href="#checklist">Publicación<sup>05</sup></a>
+        <a href="#especiales">Extras<sup>06</sup></a>
       </nav>
 
       <div class="topbar-status">
@@ -1068,7 +1280,7 @@
       </div>
     </section>
 
-    <!-- BENTO GRID: ACUERDOS, JUNTAS Y PAGOS -->
+    <!-- BENTO GRID: ACUERDOS, JUNTAS, MINUTA, DESARROLLO CREATIVO Y PAGOS -->
     <section id="acuerdos" class="bento-top-grid">
       <!-- Tarjeta 1: Acuerdos -->
       <article class="bento-card card-stone">
@@ -1134,6 +1346,42 @@
           </div>
         </div>
       </div>
+
+      <!-- Tarjeta Minuta de la reciente junta -->
+      <article id="minuta" class="bento-card card-minuta">
+        <div>
+          <span class="pill-tag pill-dark">Seguimiento de Reuniones</span>
+          <h2 class="serif-heading">Minuta de la reciente junta</h2>
+          <p style="font-size: 14px; color: var(--text-muted);">
+            Espacio compartido para registrar los acuerdos, pendientes y acciones derivadas de la sesión más reciente.
+          </p>
+        </div>
+
+        <div class="minuta-grid">
+          <div class="minuta-editor-box">
+            <label for="minutaSummaryTextarea">Resumen de acuerdos y pendientes</label>
+            <textarea
+              id="minutaSummaryTextarea"
+              class="minuta-textarea"
+              placeholder="Escribe aquí el resumen de los acuerdos tomados, puntos clave y pendientes de la reciente junta..."
+            ></textarea>
+          </div>
+
+          <div class="minuta-actions-box">
+            <label for="minutaActionInput">Zona de peticiones / acciones a ejecutar</label>
+            <form id="minutaActionForm" class="minuta-add-row">
+              <input
+                type="text"
+                id="minutaActionInput"
+                placeholder="Añadir petición o pendiente accionable..."
+                required
+              />
+              <button type="submit" class="btn-minuta-add">+ Añadir</button>
+            </form>
+            <div class="minuta-action-list" id="minutaActionList"></div>
+          </div>
+        </div>
+      </article>
 
       <!-- Tarjeta 4: Recordatorio visual de flujo -->
       <article class="bento-card card-terracotta">
@@ -1205,10 +1453,17 @@
         <div>
           <h2>Tablero de 10 Contenidos</h2>
           <p>
-            La Fundación completa <strong>título, tema general, fecha deseada y ubicación del material</strong>. Lucy asigna el formato y desarrolla cada pieza.
+            La Fundación completa <strong>título, tema general, fecha deseada, ubicación del material y enlaces</strong>. Lucy asigna el formato y desarrolla cada pieza.
           </p>
         </div>
-        <div class="progress-pill" id="cardsProgressPill">0 / 10 tarjetas con tema</div>
+        <div class="section-head-right">
+          <div class="period-nav" aria-label="Navegación entre periodos de corte día 20">
+            <button type="button" id="prevPeriodBtn" class="btn-period-nav">← Anterior</button>
+            <span id="periodRangeLabel" class="period-range-label">20 de noviembre al 20 de diciembre</span>
+            <button type="button" id="nextPeriodBtn" class="btn-period-nav">Siguiente →</button>
+          </div>
+          <div class="progress-pill" id="cardsProgressPill">0 / 10 tarjetas con tema</div>
+        </div>
       </div>
 
       <div class="cards-grid-10" id="cardsGridContainer"></div>
@@ -1314,7 +1569,15 @@
 
   <script>
     const BASE_PACKAGE_PRICE = 5000;
-    const STORAGE_KEY = 'enCuentos_serviciosDigitales_v6';
+    const STORAGE_KEY = 'enCuentos_serviciosDigitales_v7';
+
+    const MONTH_NAMES = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+
+    // Periodo base 0 = 20 de noviembre al 20 de diciembre (corte los días 20)
+    const BASE_START_MONTH_INDEX = 10; // noviembre
 
     const firebaseConfig = {
       apiKey: "AIzaSyA7Bzw44UvKRW1wG8NpfCorbGLYj3M1aYI",
@@ -1325,18 +1588,38 @@
       appId: "1:490138151421:web:284e4353327cacf1bb5194"
     };
 
-    const defaultCards = Array.from({ length: 10 }, (_, idx) => ({
-      id: idx + 1,
-      title: idx === 0 ? 'Bienvenida al ciclo mensual de lectura' : '',
-      topic: idx === 0 ? 'Presentar el impacto de los talleres de narración oral en comunidades.' : '',
-      desiredDate: idx === 0 ? '2026-11-22' : '',
-      hasMedia: idx === 0 ? 'si' : 'pendiente',
-      repoUrl: idx === 0 ? 'Google Photos' : '',
-      format: idx === 0 ? 'Carrusel' : 'Por definir (Lucy)',
+    function createBlankCards() {
+      return Array.from({ length: 10 }, (_, idx) => ({
+        id: idx + 1,
+        title: '',
+        topic: '',
+        desiredDate: '',
+        hasMedia: 'pendiente',
+        repoUrl: '',
+        link1: '',
+        link2: '',
+        format: 'Por definir (Lucy)',
+        published: false,
+        publishDate: '',
+        note: ''
+      }));
+    }
+
+    const defaultCards = createBlankCards();
+    defaultCards[0] = {
+      id: 1,
+      title: 'Bienvenida al ciclo mensual de lectura',
+      topic: 'Presentar el impacto de los talleres de narración oral en comunidades.',
+      desiredDate: '2026-11-22',
+      hasMedia: 'si',
+      repoUrl: 'Google Photos',
+      link1: '',
+      link2: '',
+      format: 'Carrusel',
       published: false,
       publishDate: '',
       note: ''
-    }));
+    };
 
     const defaultState = {
       currentMonth: 'Noviembre 2026',
@@ -1358,6 +1641,12 @@
       lastMeetingNotes: 'Alineación de objetivos mensuales y revisión de carpetas.',
       nextMeetingDate: '2026-11-26',
       nextMeetingNotes: 'Revisión de avances de parrilla y métricas.',
+      minutaSummary: '',
+      minutaActions: [],
+      currentPeriodKey: '0',
+      periods: {
+        '0': defaultCards
+      },
       cards: defaultCards,
       specialRequests: [
         {
@@ -1378,18 +1667,50 @@
     let docRef = null;
     let saveTimer = null;
 
-    function normalizeCards(cardsList) {
+    function getPeriodLabel(periodOffset) {
+      const offset = Number(periodOffset || 0);
+      const startIdx = ((BASE_START_MONTH_INDEX + offset) % 12 + 12) % 12;
+      const endIdx = (startIdx + 1) % 12;
+      return `20 de ${MONTH_NAMES[startIdx]} al 20 de ${MONTH_NAMES[endIdx]}`;
+    }
+
+    function normalizeCards(cardsList, fallbackList) {
+      const baseArr = fallbackList || createBlankCards();
       return Array.from({ length: 10 }, (_, idx) => {
-        const base = structuredClone(defaultCards[idx]);
+        const base = structuredClone(baseArr[idx] || createBlankCards()[idx]);
         const incoming = Array.isArray(cardsList) && cardsList[idx] ? cardsList[idx] : {};
         return {
           ...base,
           ...incoming,
           id: idx + 1,
           desiredDate: incoming.desiredDate || '',
+          link1: incoming.link1 || '',
+          link2: incoming.link2 || '',
           publishDate: incoming.publishDate || ''
         };
       });
+    }
+
+    function normalizePeriods(rawPeriods, legacyCards) {
+      const periods = {};
+      if (rawPeriods && typeof rawPeriods === 'object') {
+        Object.keys(rawPeriods).forEach((key) => {
+          periods[String(key)] = normalizeCards(rawPeriods[key], createBlankCards());
+        });
+      }
+      if (!periods['0']) {
+        periods['0'] = normalizeCards(legacyCards, defaultCards);
+      }
+      return periods;
+    }
+
+    function normalizeMinutaActions(actions) {
+      if (!Array.isArray(actions)) return [];
+      return actions.map((item, i) => ({
+        id: item.id || (Date.now() + i),
+        text: String(item.text || ''),
+        done: !!item.done
+      })).filter(item => item.text.trim() !== '');
     }
 
     function normalizeSpecialRequests(items) {
@@ -1403,24 +1724,49 @@
       }));
     }
 
+    function buildNormalizedState(parsed) {
+      const base = structuredClone(defaultState);
+      const merged = {
+        ...base,
+        ...(parsed || {}),
+        paymentsByMonth: {
+          ...base.paymentsByMonth,
+          ...((parsed && parsed.paymentsByMonth) || {})
+        },
+        minutaSummary: (parsed && typeof parsed.minutaSummary === 'string') ? parsed.minutaSummary : '',
+        minutaActions: normalizeMinutaActions(parsed && parsed.minutaActions),
+        specialRequests: normalizeSpecialRequests(parsed && parsed.specialRequests)
+      };
+
+      const periods = normalizePeriods(parsed && parsed.periods, parsed && parsed.cards);
+      const periodKey = (parsed && parsed.currentPeriodKey !== undefined && parsed.currentPeriodKey !== null)
+        ? String(parsed.currentPeriodKey)
+        : '0';
+
+      if (!periods[periodKey]) {
+        periods[periodKey] = createBlankCards();
+      }
+
+      merged.currentPeriodKey = periodKey;
+      merged.periods = periods;
+      merged.cards = periods[periodKey];
+      return merged;
+    }
+
     function loadLocalFallback() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return structuredClone(defaultState);
-        const parsed = JSON.parse(raw);
-        return {
-          ...structuredClone(defaultState),
-          ...parsed,
-          paymentsByMonth: {
-            ...defaultState.paymentsByMonth,
-            ...(parsed.paymentsByMonth || {})
-          },
-          cards: normalizeCards(parsed.cards),
-          specialRequests: normalizeSpecialRequests(parsed.specialRequests)
-        };
+        if (!raw) return buildNormalizedState(defaultState);
+        return buildNormalizedState(JSON.parse(raw));
       } catch (e) {
-        return structuredClone(defaultState);
+        return buildNormalizedState(defaultState);
       }
+    }
+
+    function syncActivePeriodToState() {
+      const key = String(appState.currentPeriodKey || '0');
+      if (!appState.periods) appState.periods = {};
+      appState.periods[key] = appState.cards;
     }
 
     function setSyncStatus(mode, text) {
@@ -1432,6 +1778,7 @@
     }
 
     function saveState() {
+      syncActivePeriodToState();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
 
       if (!docRef) return;
@@ -1439,6 +1786,7 @@
 
       clearTimeout(saveTimer);
       saveTimer = setTimeout(() => {
+        syncActivePeriodToState();
         docRef.set(appState, { merge: true })
           .then(() => {
             setSyncStatus('online', 'Sincronizado en la nube');
@@ -1462,16 +1810,19 @@
             const activeEl = document.activeElement;
             const isTyping = activeEl && ['INPUT', 'TEXTAREA', 'SELECT'].includes(activeEl.tagName);
 
-            appState = {
-              ...structuredClone(defaultState),
-              ...cloudData,
-              paymentsByMonth: {
-                ...defaultState.paymentsByMonth,
-                ...(cloudData.paymentsByMonth || {})
-              },
-              cards: normalizeCards(cloudData.cards),
-              specialRequests: normalizeSpecialRequests(cloudData.specialRequests)
-            };
+            const localPeriodKey = String(appState.currentPeriodKey || '0');
+            const normalizedCloud = buildNormalizedState(cloudData);
+            if (!isTyping) {
+              appState = normalizedCloud;
+            } else {
+              // Preserva el periodo en el que el usuario está trabajando mientras escribe
+              normalizedCloud.currentPeriodKey = localPeriodKey;
+              if (!normalizedCloud.periods[localPeriodKey]) {
+                normalizedCloud.periods[localPeriodKey] = createBlankCards();
+              }
+              normalizedCloud.cards = normalizedCloud.periods[localPeriodKey];
+              appState = normalizedCloud;
+            }
 
             localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
             setSyncStatus('online', 'Sincronizado en la nube');
@@ -1552,9 +1903,43 @@
         `Iguala mensual: ${formatCurrency(BASE_PACKAGE_PRICE)} (registro independiente de extras)`;
     }
 
+    function renderMinuta() {
+      const textarea = document.getElementById('minutaSummaryTextarea');
+      if (textarea && document.activeElement !== textarea) {
+        textarea.value = appState.minutaSummary || '';
+      }
+
+      const list = document.getElementById('minutaActionList');
+      list.innerHTML = '';
+
+      if (!appState.minutaActions || appState.minutaActions.length === 0) {
+        list.innerHTML = `
+          <div class="minuta-action-item">
+            <span style="color: var(--text-muted); font-size: 12.5px;">Aún no hay peticiones o acciones registradas en esta minuta.</span>
+          </div>
+        `;
+        return;
+      }
+
+      appState.minutaActions.forEach((act) => {
+        const div = document.createElement('div');
+        div.className = 'minuta-action-item' + (act.done ? ' is-done' : '');
+        div.innerHTML = `
+          <label class="minuta-action-check">
+            <input type="checkbox" data-minuta-check="${act.id}" ${act.done ? 'checked' : ''} />
+            <span>${escapeHtml(act.text)}</span>
+          </label>
+          <button type="button" class="btn-mini-del" data-minuta-del="${act.id}" title="Eliminar">✕</button>
+        `;
+        list.appendChild(div);
+      });
+    }
+
     function renderCardsGrid() {
       const container = document.getElementById('cardsGridContainer');
       container.innerHTML = '';
+
+      document.getElementById('periodRangeLabel').textContent = getPeriodLabel(appState.currentPeriodKey);
 
       let filledCount = 0;
 
@@ -1623,6 +2008,18 @@
                 <option value="Album iPhone" ${card.repoUrl === 'Album iPhone' ? 'selected' : ''}>Album iPhone</option>
                 ${hasCustomRepo ? `<option value="${escapeHtml(card.repoUrl)}" selected>${escapeHtml(card.repoUrl)}</option>` : ''}
               </select>
+            </div>
+          </div>
+
+          <div class="links-row">
+            <div class="field-group">
+              <label>Link 1</label>
+              <input type="url" data-index="${index}" data-field="link1" placeholder="https://..." value="${escapeHtml(card.link1 || '')}" />
+            </div>
+
+            <div class="field-group">
+              <label>Link 2</label>
+              <input type="url" data-index="${index}" data-field="link2" placeholder="https://..." value="${escapeHtml(card.link2 || '')}" />
             </div>
           </div>
         `;
@@ -1739,6 +2136,7 @@
 
     function renderAll() {
       renderMeetingsAndPayments();
+      renderMinuta();
       renderCardsGrid();
       renderChecklist();
       renderSpecialRequests();
@@ -1772,6 +2170,69 @@
       appState.nextMeetingNotes = e.target.value;
       saveState();
     });
+
+    // Minuta de la reciente junta
+    document.getElementById('minutaSummaryTextarea').addEventListener('input', (e) => {
+      appState.minutaSummary = e.target.value;
+      saveState();
+    });
+
+    document.getElementById('minutaActionForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = document.getElementById('minutaActionInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      if (!Array.isArray(appState.minutaActions)) {
+        appState.minutaActions = [];
+      }
+      appState.minutaActions.push({
+        id: Date.now(),
+        text,
+        done: false
+      });
+      input.value = '';
+      saveState();
+      renderMinuta();
+    });
+
+    document.getElementById('minutaActionList').addEventListener('change', (e) => {
+      const checkId = e.target.dataset.minutaCheck;
+      if (checkId !== undefined) {
+        appState.minutaActions = appState.minutaActions.map((item) =>
+          String(item.id) === String(checkId) ? { ...item, done: e.target.checked } : item
+        );
+        saveState();
+        renderMinuta();
+      }
+    });
+
+    document.getElementById('minutaActionList').addEventListener('click', (e) => {
+      const delId = e.target.dataset.minutaDel;
+      if (delId !== undefined) {
+        appState.minutaActions = appState.minutaActions.filter((item) => String(item.id) !== String(delId));
+        saveState();
+        renderMinuta();
+      }
+    });
+
+    // Navegación por periodos de corte día 20
+    function switchPeriod(delta) {
+      syncActivePeriodToState();
+      const currentNum = Number(appState.currentPeriodKey || 0);
+      const nextKey = String(currentNum + delta);
+      if (!appState.periods[nextKey]) {
+        appState.periods[nextKey] = createBlankCards();
+      }
+      appState.currentPeriodKey = nextKey;
+      appState.cards = appState.periods[nextKey];
+      saveState();
+      renderCardsGrid();
+      renderChecklist();
+    }
+
+    document.getElementById('prevPeriodBtn').addEventListener('click', () => switchPeriod(-1));
+    document.getElementById('nextPeriodBtn').addEventListener('click', () => switchPeriod(1));
 
     document.getElementById('billingMonth').addEventListener('change', (e) => {
       appState.currentMonth = e.target.value;
@@ -1928,7 +2389,7 @@
 
     document.getElementById('resetBoardBtn').addEventListener('click', () => {
       if (confirm('¿Deseas restaurar los datos iniciales de ejemplo?')) {
-        appState = structuredClone(defaultState);
+        appState = buildNormalizedState(defaultState);
         saveState();
         renderAll();
       }
